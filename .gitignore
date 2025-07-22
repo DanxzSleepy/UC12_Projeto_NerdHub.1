@@ -1,0 +1,33 @@
+# Ambiente virtual
+venv/
+.env
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Arquivos de banco de dados e logs
+db.sqlite3
+*.log
+
+# Configs do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de editor
+.vscode/
+.idea/
+
+# Arquivos de migração desnecessários
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Django static e media (se não for versionar eles)
+staticfiles/
+media/
+
+# Arquivos temporários
+*.bak
+*.swp
+*.tmp
