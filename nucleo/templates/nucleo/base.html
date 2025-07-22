@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}NerdHub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="top-bar">
+            <div class="logo">NERDHUB</div>
+            <div class="search-box">
+                <input type="text" placeholder="O que você está procurando?">
+                <button>🔍</button>
+            </div>
+            <div class="icons">
+                <a href="#">🛒</a>
+                <a href="#">👤</a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="active">Principal</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Suporte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTEÚDO -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <h4>Nerd Hub</h4>
+                <p>Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.</p>
+            </div>
+            <div>
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#">Principal</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Loja</a></li>
+                    <li><a href="#">Suporte</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Categorias</h4>
+                <ul>
+                    <li><a href="#">Colecionáveis</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Acessórios</a></li>
+                    <li><a href="#">Vestuário</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes Sociais</h4>
+                <div class="social-icons">
+                    <a href="#">📘</a>
+                    <a href="#">📸</a>
+                    <a href="#">✖️</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NerdHub. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
