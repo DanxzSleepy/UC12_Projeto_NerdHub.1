@@ -1,8 +1,43 @@
+
 {% extends 'nucleo/base.html' %}
+
 {% block title %}Página Inicial - NerdHub{% endblock %}
+
 {% block content %}
 {% load static %}
+<!-- BANNER PRINCIPAL -->
+<section class="banner">
+    <img src="{% static 'img/banner.png' %}" alt="Banner Promocional">
+</section>
 
-<h2>Bem-vindo ao NerdHub!</h2>
-    <p>Essa é a página inicial, com base no layout do Figma 😎</p>
+<!-- MARCAS FAMOSAS -->
+<section class="brands">
+    <h2>Navegue por Marcas Famosas</h2>
+    <div class="brand-buttons">
+        <button>Disney</button>
+        <button>Marvel</button>
+        <button>Star Wars</button>
+        <button>PlayStation</button>
+        <button>Xbox</button>
+    </div>
+</section>
+
+<!-- FUNKOS DO MÊS -->
+<section class="funkos">
+    <h2>Funkos do Mês</h2>
+    <div class="funko-grid">
+        <!-- Exemplo de produto -->
+        <div class="funko-item">
+            <img src="{% static 'img/funko1.png' %}" alt="Funko 1">
+            <h4>Funko Baby Yoda</h4>
+            <p>R$ 99,90</p>
+        </div>
+        <div class="funko-item">
+            <img src="{% static 'img/funko2.png' %}" alt="Funko 2">
+            <h4>Funko Homem-Aranha</h4>
+            <p>R$ 89,90</p>
+        </div>
+        <!-- Depois a gente puxa do banco dinamicamente -->
+    </div>
+</section>
 {% endblock %}

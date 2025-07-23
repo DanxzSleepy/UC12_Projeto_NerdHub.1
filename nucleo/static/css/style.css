@@ -1,9 +1,11 @@
+/* GERAL */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background-color: #f0f0f0;
 }
 
+/* TOPO */
 .top-header {
     background-color: #0c4133;
 }
@@ -21,27 +23,6 @@ body {
     color: white;
 }
 
-.search-box {
-    display: flex;
-    flex-grow: 1;
-    margin: 0 20px;
-}
-
-.search-box input {
-    flex-grow: 1;
-    padding: 8px;
-    border-radius: 4px 0 0 4px;
-    border: none;
-}
-
-.search-box button {
-    padding: 8px;
-    background-color: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
 .icons a {
     color: white;
     margin-left: 10px;
@@ -49,6 +30,40 @@ body {
     text-decoration: none;
 }
 
+/* BARRA DE PESQUISA */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 25px;
+    padding: 5px;
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 25px;
+    background: transparent;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+/* MENU DE NAVEGAÇÃO */
 .main-nav {
     background-color: #111;
 }
@@ -77,6 +92,7 @@ body {
     background-color: #0c4133;
 }
 
+/* FOOTER */
 footer {
     background-color: #084d3b;
     color: white;
@@ -118,4 +134,82 @@ footer {
     padding-top: 20px;
     font-size: 14px;
     border-top: 1px solid #056045;
+}
+
+/* BANNER */
+.banner img {
+    width: 100%;
+    display: block;
+}
+
+/* MARCAS */
+.brands {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    text-align: center;
+}
+
+.brand-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.brand-buttons button {
+    background-color: #0c4133;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.brand-buttons button:hover {
+    background-color: #0e614b;
+}
+
+/* FUNKOS */
+.funkos {
+    padding: 2rem;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.funko-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.funko-item {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.funko-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .search-container {
+        width: 90%;
+    }
+
+    .search-input {
+        font-size: 12px;
+    }
+
+    .search-button {
+        font-size: 14px;
+    }
 }
