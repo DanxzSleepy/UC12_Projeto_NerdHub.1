@@ -24,20 +24,16 @@
 
 <!-- FUNKOS DO MÊS -->
 <section class="funkos">
-    <h2>Funkos do Mês</h2>
+    <h2>Produtos em Destaque</h2>
     <div class="funko-grid">
-        <!-- Exemplo de produto -->
-        <div class="funko-item">
-            <img src="{% static 'img/funko1.png' %}" alt="Funko 1">
-            <h4>Funko Baby Yoda</h4>
-            <p>R$ 99,90</p>
-        </div>
-        <div class="funko-item">
-            <img src="{% static 'img/funko2.png' %}" alt="Funko 2">
-            <h4>Funko Homem-Aranha</h4>
-            <p>R$ 89,90</p>
-        </div>
-        <!-- Depois a gente puxa do banco dinamicamente -->
+        {% for produto in produtos %}
+            <div class="funko-item">
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="funko-img">
+                <h3>{{ produto.nome }}</h3>
+                <p class="price">R$ {{ produto.preco }}</p>
+                <a href="#" class="btn">Ver mais</a>
+            </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
