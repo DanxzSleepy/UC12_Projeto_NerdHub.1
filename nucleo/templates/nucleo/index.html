@@ -31,7 +31,7 @@
                 <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="funko-img">
                 <h3>{{ produto.nome }}</h3>
                 <p class="price">R$ {{ produto.preco }}</p>
-                <a href="#" class="btn">Ver mais</a>
+                <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
             </div>
         {% endfor %}
     </div>

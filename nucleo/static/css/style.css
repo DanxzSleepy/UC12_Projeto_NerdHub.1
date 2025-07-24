@@ -21,6 +21,14 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: white;
+
+}
+
+.logo:hover{
+    display: flex;
+    align-items: center;
+    color: white;
+
 }
 
 .icons a {
@@ -241,6 +249,34 @@ footer {
     height: 200px;
     object-fit: contain;
     border-radius: 8px;
+}
+/* GALERIA */
+.produto-galeria {
+    text-align: center;
+}
+
+.produto-galeria img {
+    max-width: 100%;
+    height: auto;
+}
+
+.miniaturas {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.miniaturas img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.miniaturas img:hover {
+    border-color: #0c4133;
 }
 
 
