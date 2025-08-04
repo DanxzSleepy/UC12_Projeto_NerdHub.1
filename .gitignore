@@ -23,9 +23,9 @@ Thumbs.db
 */migrations/__pycache__/
 */migrations/*.pyc
 
-# Django static e media (se não for versionar eles)
-staticfiles/
-media/
+# # Django static e media (se não for versionar eles)
+# staticfiles/
+# media/
 
 # Arquivos temporários
 *.bak
