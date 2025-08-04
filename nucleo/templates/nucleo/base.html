@@ -1,14 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}NerdHub{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -16,7 +14,9 @@
     <!-- HEADER -->
     <header class="top-header">
         <div class="top-bar">
-            <div class="logo"><a href="{% url 'index' %}">NERDHUB</a></div>
+            <div class="logo">
+                <a href="{% url 'index' %}">NERDHUB</a>
+            </div>
             <div class="search-container">
                 <input class="search-input" type="text" placeholder="O que você está procurando?">
                 <button class="search-button">
@@ -31,9 +31,9 @@
 
         <nav class="main-nav">
             <ul>
-                <li><a href="#" class="active">Principal</a></li>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Suporte</a></li>
+                <li><a href="{% url 'index' %}">Principal</a></li>
+                <li><a href="{% url 'index' %}">Sobre Nós</a></li>
+                <li><a href="{% url 'index' %}">Suporte</a></li>
             </ul>
         </nav>
     </header>
@@ -53,10 +53,10 @@
             <div>
                 <h4>Links Rápidos</h4>
                 <ul>
-                    <li><a href="#">Principal</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="{% url 'index' %}">Principal</a></li>
+                    <li><a href="{% url 'index' %}">Sobre Nós</a></li>
                     <li><a href="#">Loja</a></li>
-                    <li><a href="#">Suporte</a></li>
+                    <li><a href="{% url 'index' %}">Suporte</a></li>
                 </ul>
             </div>
             <div>
@@ -83,5 +83,4 @@
     </footer>
 
 </body>
-
 </html>
