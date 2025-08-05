@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -6,5 +6,10 @@ urlpatterns = [
     path('produto/<int:id>/', views.detalhe_produto, name='detalhe_produto'),
     path('sobre/', views.sobre, name='sobre'),
     path('suporte/', views.suporte, name='suporte'),
+    path('usuario/', include('usuarios.urls'), name='usuarios')
 
+<<<<<<< Updated upstream
 ] 
+=======
+] 
+>>>>>>> Stashed changes
