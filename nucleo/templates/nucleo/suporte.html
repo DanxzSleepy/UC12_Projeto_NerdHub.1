@@ -1,0 +1,97 @@
+{% extends 'nucleo/base.html' %}
+{% block title %}Suporte - NerdHub{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="suporte-container">
+    <h1 class="suporte-titulo">Suporte</h1>
+
+    <div class="suporte-grid">
+        <div class="suporte-instrucoes">
+            <h2>Chat de Suporte Simplificado do Nerd Hub</h2>
+            <p>Olá! Seja bem-vindo ao Chat de Suporte do Nerd Hub.</p>
+            <p>Estamos aqui para te ajudar a aproveitar ao máximo sua experiência em suas compras!</p>
+
+            <p><strong>Para iniciar o atendimento:</strong></p>
+            <ol>
+                <li>Escolha o tema da sua dúvida:
+                    <ul>
+                        <li><strong>Criar conta/acessar:</strong> Dúvidas sobre login, criação de conta e acesso à plataforma.</li>
+                        <li><strong>Navegar:</strong> Encontrar produtos, gerenciar sua conta e usar os recursos da plataforma.</li>
+                        <li><strong>Solucionar problemas:</strong> Erros, falhas e problemas técnicos.</li>
+                        <li><strong>Falar com especialista:</strong> Converse com um agente em tempo real.</li>
+                    </ul>
+                </li>
+                <li>Siga as instruções do chatbot: Responda às perguntas e forneça as informações solicitadas.</li>
+                <li>Aguarde o atendimento: Se necessário, um agente entrará em contato com você.</li>
+            </ol>
+
+            <p><strong>Lembre-se:</strong></p>
+            <ul>
+                <li>Consulte nossa Central de Ajuda: https://example.com</li>
+                <li>Verifique sua conexão com a internet.</li>
+                <li>Tente atualizar o navegador ou aplicativo.</li>
+                <li>Em caso de dúvidas, entre em contato: [endereço de e-mail removido]</li>
+            </ul>
+        </div>
+
+        <div class="chat-box">
+            <div class="chat-header">
+                <span>🧑‍💻 Chat Suporte</span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <p class="bot-message">Olá! Sou o assistente do Nerd Hub. Como posso ajudar?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Escreva sua mensagem..." id="user-input" />
+                <button onclick="enviarMensagem()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+<!-- Outro Block Content
+<div class="suporte-container">
+  <div class="suporte-coluna-esquerda">
+    <h2>Chat de Suporte Simplificado do NerdHub</h2>
+    <p>Olá! Seja bem-vindo ao Chat de Suporte do Nerd Hub.</p>
+    <p>Estamos aqui para te ajudar a aproveitar ao máximo sua experiência em suas compras!</p>
+    <p><strong>Para iniciar o atendimento:</strong></p>
+    <ol>
+      <li><strong>Escolha o tema da sua dúvida:</strong>
+        <ul>
+          <li>Criar conta/acessar: Dúvidas sobre login, criação de conta e acesso à plataforma.</li>
+          <li>Navegar: Encontrar produtos, gerenciar sua conta e usar os recursos da plataforma.</li>
+          <li>Solucionar problemas: Erros, falhas e problemas técnicos.</li>
+          <li>Falar com especialista: Converse com um agente em tempo real.</li>
+        </ul>
+      </li>
+      <li><strong>Siga as instruções do chatbot:</strong> Responda às perguntas e forneça as informações solicitadas.</li>
+      <li><strong>Aguarde o atendimento:</strong> Se necessário, um agente entrará em contato com você.</li>
+    </ol>
+    <p><strong>Lembre-se:</strong></p>
+    <ul>
+      <li>Consulte nossa Central de Ajuda: https://example.com</li>
+      <li>Verifique sua conexão com a internet.</li>
+      <li>Tente atualizar o navegador ou aplicativo.</li>
+      <li>Em caso de dúvidas, entre em contato: [email removido]</li>
+    </ul>
+  </div>
+
+  <div class="suporte-coluna-direita">
+    <div class="chat-box">
+      <div class="chat-header">Chat Suporte</div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot">Olá! Como posso te ajudar?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="escreva sua mensagem">
+        <button onclick="enviarMensagem()">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+ -->

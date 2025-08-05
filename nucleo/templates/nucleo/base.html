@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}NerdHub{% endblock %}</title>
@@ -28,14 +29,48 @@
                 <a href="#">👤</a>
             </div>
         </div>
-
-        <nav class="main-nav">
+        <!-- NAVEGACAO VERSAO 1 -->
+        <!-- <nav class="main-nav">
             <ul>
                 <li><a href="{% url 'index' %}">Principal</a></li>
-                <li><a href="{% url 'index' %}">Sobre Nós</a></li>
-                <li><a href="{% url 'index' %}">Suporte</a></li>
+                <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
+                <li><a href="{% url 'suporte' %}">Suporte</a></li>
+            </ul>
+        </nav> -->
+
+        <!-- NAVEGACAO VERSAO 2 -->
+        <!-- <nav class="main-nav">
+            <ul style="display: flex; gap: 1rem; list-style: none;">
+                <li><a href="{% url 'index' %}"
+                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'index' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Início</a>
+                </li>
+                <li><a href="{% url 'sobre' %}"
+                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'sobre' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Sobre</a>
+                </li>
+                <li><a href="{% url 'suporte' %}"
+                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'suporte' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Suporte</a>
+                </li>
+            </ul>
+        </nav>  -->
+
+        <!-- NAVEGACAO VERSAO 3 -->
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}"
+                        class="nav-link {% if page_name == 'index' %}active{% endif %}">Início</a>
+                </li>
+                <li>
+                    <a href="{% url 'sobre' %}"
+                        class="nav-link {% if page_name == 'sobre' %}active{% endif %}">Sobre</a>
+                </li>
+                <li>
+                    <a href="{% url 'suporte' %}"
+                        class="nav-link {% if page_name == 'suporte' %}active{% endif %}">Suporte</a>
+                </li>
             </ul>
         </nav>
+
     </header>
 
     <!-- CONTEÚDO -->
@@ -54,9 +89,9 @@
                 <h4>Links Rápidos</h4>
                 <ul>
                     <li><a href="{% url 'index' %}">Principal</a></li>
-                    <li><a href="{% url 'index' %}">Sobre Nós</a></li>
+                    <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
                     <li><a href="#">Loja</a></li>
-                    <li><a href="{% url 'index' %}">Suporte</a></li>
+                    <li><a href="{% url 'suporte' %}">Suporte</a></li>
                 </ul>
             </div>
             <div>
@@ -83,5 +118,44 @@
     </footer>
 
 </body>
-</html>
 
+<!-- Isso e para o suporte.html -->
+ 
+<script>
+    function enviarMensagem() {
+        const input = document.getElementById('user-input');
+        const mensagem = input.value.trim();
+        if (!mensagem) return;
+
+        const chat = document.getElementById('chat-messages');
+
+        const userMsg = document.createElement('p');
+        userMsg.textContent = mensagem;
+        userMsg.style.textAlign = 'right';
+        chat.appendChild(userMsg);
+
+        const respostaBot = document.createElement('p');
+        respostaBot.classList.add('bot-message');
+        respostaBot.textContent = gerarResposta(mensagem);
+        chat.appendChild(respostaBot);
+
+        input.value = '';
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function gerarResposta(mensagem) {
+        mensagem = mensagem.toLowerCase();
+
+        if (mensagem.includes('erro') || mensagem.includes('problema')) {
+            return "Sinto muito! Verifique sua conexão e tente novamente. Caso continue, fale com nosso suporte técnico.";
+        } else if (mensagem.includes('login') || mensagem.includes('senha')) {
+            return "Você pode redefinir sua senha clicando em 'Esqueci minha senha' na tela de login.";
+        } else if (mensagem.includes('produto') || mensagem.includes('entrega')) {
+            return "Você pode acompanhar seu pedido na aba 'Meus Pedidos'. Precisa de mais ajuda?";
+        } else {
+            return "Desculpe, não entendi. Por favor, descreva sua dúvida com mais detalhes.";
+        }
+    }
+</script>
+
+</html>
