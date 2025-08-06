@@ -5,16 +5,84 @@
 
 {% block content %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+</head>
+
+<body>
+    
 <!-- BANNER PRINCIPAL -->
 <section class="banner">
     <img src="{% static 'img/banner.png' %}" alt="Banner Promocional">
 </section>
 
+<!-- GATILHOS -->
+<section class="beneficios">
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_cartao.png' %}" alt="icon_cartao">
+      <p>Em até 12x sem juros</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_carro_entrega.png' %}" alt="icon_carro_entrega">
+      <p>Entrega rápida</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_caixa.png' %}" alt="icon_caixa">
+      <p>Frete grátis</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_pix.png' %}" alt="icon_pix">
+      <p>Selecione o Pix e ganhe 5% de desconto</p>
+    </div>
+
+</section>
+
+<!--
+<section class="eutoperdendoacabeca">
+    <div class="eunaoaguentomais">
+        <div class="estouenlouquecendo">
+        Opcao 1 tabelas
+        <table>
+            <tr>
+                <th class="icon"><img src="" alt="icon_cartao"></th>
+                <th><p> Em até 12x sem juros </p></th>
+                <th class="icon"><img src="" alt="icon_carro_entrega"></th>
+                <th><p>Entrega rápida</p></th>
+                <th class="icon"><img src="" alt="icon_caixa"></th>
+                <th ><p>Frete grátis</p></th>
+                <th class="icon"><img src="" alt="icon_pix"></th>
+                <th><p>Selecione o Pix e ganhe 5% de desconto</p></th>
+            </tr>
+        </table>
+        </div> 
+
+        <div class="estouenlouquecendo2">
+        Opcao 2 paragrafos e images 
+        <img src="" alt="icon_cartao">
+        <p>Em até 12x sem juros</p>
+        <img src="" alt="icon_carro_entrega">
+        <p>Entrega rápida</p>
+        <img src="" alt="icon_caixa">
+        <p>Frete grátis</p>
+        <img src="" alt="icon_pix">
+        <p>Selecione o Pix e ganhe 5% de desconto</p>
+        </div>
+    </div> 
+
+</section> -->
+
 <!-- MARCAS FAMOSAS -->
-<section class="brands">
+<section class="marcas-section">
     <h2>Navegue por Marcas Famosas</h2>
     <div class="brand-buttons">
-        <button>Disney</button>
+        <button><img src="{% static 'img/BannerDisney.png' %}" alt="Disney"></button>
         <button>Marvel</button>
         <button>Star Wars</button>
         <button>PlayStation</button>
@@ -23,8 +91,8 @@
 </section>
 
 <!-- FUNKOS DO MÊS -->
-<section class="funkos">
-    <h2>Produtos em Destaque</h2>
+<section class="funkos ">
+    <h2>Funkos do Mês</h2>
     <div class="funko-grid">
         {% for produto in produtos %}
             <div class="funko-item">
@@ -36,4 +104,6 @@
         {% endfor %}
     </div>
 </section>
+</body>
+</html>
 {% endblock %}

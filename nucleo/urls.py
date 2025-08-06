@@ -7,9 +7,4 @@ urlpatterns = [
     path('sobre/', views.sobre, name='sobre'),
     path('suporte/', views.suporte, name='suporte'),
     path('usuario/', include('usuarios.urls'), name='usuarios')
-
-<<<<<<< Updated upstream
-] 
-=======
-] 
->>>>>>> Stashed changes
+]
