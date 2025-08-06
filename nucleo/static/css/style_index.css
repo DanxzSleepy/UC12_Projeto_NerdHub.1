@@ -70,6 +70,37 @@ body {
     color: #333;
 }
 
+/* BENEFÍCIOS / GATILHOS */
+.beneficios {
+    background-color: #2C2C2C;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    color: white;
+}
+
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.beneficio-item img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.beneficio-item p {
+    margin: 0;
+    font-size: 1rem;
+}
+
 /* NAVEGAÇÃO */
 .main-nav {
     background-color: #111;
@@ -114,7 +145,7 @@ body {
 
 .marcas-section h2 {
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    
     color: white;
 }
 
