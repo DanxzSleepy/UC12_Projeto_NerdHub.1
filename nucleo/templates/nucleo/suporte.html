@@ -3,6 +3,15 @@
 
 {% block content %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style_suporte.css' %}">
+</head>
+<body>
+  
 <div class="suporte-container">
     <h1 class="suporte-titulo">Suporte</h1>
 
@@ -40,7 +49,7 @@
                 <span>🧑‍💻 Chat Suporte</span>
             </div>
             <div class="chat-messages" id="chat-messages">
-                <p class="bot-message">Olá! Sou o assistente do Nerd Hub. Como posso ajudar?</p>
+                <p class="bot-message">Olá! Sou o Bot assistente do Nerd Hub. Como posso ajudar?</p>
             </div>
             <div class="chat-input">
                 <input type="text" placeholder="Escreva sua mensagem..." id="user-input" />
@@ -49,6 +58,8 @@
         </div>
     </div>
 </div>
+</body>
+</html>
 {% endblock %}
 
 

@@ -1,75 +1,5 @@
 /* INDEX - CSS */
 
-/* GERAL */
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #0c4133;
-    color: white;
-}
-
-/* TOPO */
-.top-header {
-    background-color: #0c4133;
-}
-
-.top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-}
-
-.logo:hover {
-    color: white;
-}
-
-.icons a {
-    color: white;
-    margin-left: 10px;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-/* BARRA DE PESQUISA */
-.search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 25px;
-    padding: 5px;
-    width: 500px;
-    margin: 0 auto;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    border-radius: 25px;
-    background: transparent;
-}
-
-.search-button {
-    background-color: transparent;
-    border: none;
-    padding: 0 10px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-}
-
 /* BENEFÍCIOS / GATILHOS */
 .beneficios {
     background-color: #2C2C2C;
@@ -101,34 +31,6 @@ body {
     font-size: 1rem;
 }
 
-/* NAVEGAÇÃO */
-.main-nav {
-    background-color: #111;
-}
-
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 10px;
-}
-
-.main-nav li {
-    margin: 0 15px;
-}
-
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-}
-
-.main-nav a.active,
-.main-nav a:hover {
-    background-color: #0c4133;
-}
 
 /* BANNER */
 .banner img {
@@ -139,14 +41,14 @@ body {
 /* MARCAS */
 .marcas-section {
     background-color: #656565;
-    padding: 2rem 1rem;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
 }
 
 .marcas-section h2 {
     font-size: 1.8rem;
-    
     color: white;
+    justify-content: left;
 }
 
 .brand-buttons {
@@ -154,20 +56,21 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 20px;
 }
 
 .brand-buttons button {
-    background-color: white;
+    background-color: transparent;
     color: black;
     font-weight: bold;
     border: none;
-    padding: 1rem 2rem;
+    padding: 10px;
     border-radius: 12px;
     font-size: 1rem;
     transition: transform 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
 }
+
 
 .brand-buttons button:hover {
     transform: scale(1.05);
@@ -246,61 +149,3 @@ body {
     border-radius: 8px;
 }
 
-/* FOOTER */
-footer {
-    background-color: #084d3b;
-    color: white;
-    padding: 40px 20px 20px 20px;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.footer-top h4 {
-    margin-bottom: 10px;
-}
-
-.footer-top ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-top li {
-    margin-bottom: 5px;
-}
-
-.footer-top a {
-    color: white;
-    text-decoration: none;
-}
-
-.social-icons a {
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 14px;
-    border-top: 1px solid #056045;
-}
-
-/* RESPONSIVO */
-@media (max-width: 768px) {
-    .search-container {
-        width: 90%;
-    }
-
-    .search-input {
-        font-size: 12px;
-    }
-
-    .search-button {
-        font-size: 14px;
-    }
-}
