@@ -1,0 +1,76 @@
+{% extends 'nucleo/base.html' %}
+{% block title %}{{ marca.nome }} - Produtos{% endblock %}
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="{%  static 'css/por_marca.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+</head>
+
+<body>
+
+  <!-- BANNER PRINCIPAL -->
+  <section class="banner">
+    {% if marca.nome == "Disney" %}
+    <img src="{% static 'image/BannerDisneyR.png' %}" alt="Banner Disney">
+    {% elif marca.nome == "Marvel" %}
+    <img src="{% static 'img/BannerMarvel.png' %}" alt="Banner Marvel">
+    {% elif marca.nome == "Star Wars" %}
+    <img src="{% static 'img/BannerStarWars.png' %}" alt="Banner Star Wars">
+    {% elif marca.nome == "PlayStation" %}
+    <img src="{% static 'img/BannerPlayStation.png' %}" alt="Banner PlayStation">
+    {% elif marca.nome == "Xbox" %}
+    <img src="{% static 'img/BannerXbox.png' %}" alt="Banner Xbox">
+    {% else %}
+    <img src="{% static 'img/banner.png' %}" alt="Banner Padrão"> {% endif %}
+  </section>
+
+  <!-- GATILHOS -->
+  <section class="beneficios">
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_cartao.png' %}" alt="icon_cartao">
+      <p>Em até 12x sem juros</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_carro_entrega.png' %}" alt="icon_carro_entrega">
+      <p>Entrega rápida</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_caixa.png' %}" alt="icon_caixa">
+      <p>Frete grátis</p>
+    </div>
+
+    <div class="beneficio-item">
+      <img src="{% static 'img/icon_pix.png' %}" alt="icon_pix">
+      <p>Selecione o Pix e ganhe 5% de desconto</p>
+    </div>
+
+
+    <!-- LISTA DE PRODUTOS DA MARCA -->
+    <section class="funkos">
+      <h1>{{ marca.nome }}</h1>
+      <div class="produto-lista">
+        {% for produto in produtos %}
+        <div class="produto-item">
+          <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="produto-imagem">
+          <div class="produto-info">
+            <h3>{{ produto.nome }}</h3>
+            <p class="price">R$ {{ produto.preco }}</p>
+            <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+</body>
+
+</html>
+{% endblock %}

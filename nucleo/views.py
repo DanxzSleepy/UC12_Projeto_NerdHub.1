@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Produto
+from .models import Produto, Marca
+
 
 def index(request):
     produtos = Produto.objects.all()
-    return render(request, 'nucleo/index.html', {'produtos': produtos, 'page_name': 'index'})
+    marcas = Marca.objects.all() # agora pega todas as marcas tambem 
+    return render(request, 'nucleo/index.html', {'produtos': produtos, 'marcas': marcas, 'page_name': 'index'})
 
 def sobre(request):
     return render(request, 'nucleo/sobre.html', {'page_name': 'sobre'})
@@ -17,3 +19,8 @@ def detalhe_produto(request, id):
         'produto': produto,
         'page_name': 'detalhe_produto'  # Opcional, se quiser usar
     })
+
+def produtos_por_marca(request, marca_nome):
+    marca = Marca.objects.get(nome__iexact=marca_nome)
+    produtos = Produto.objects.filter(marca=marca)
+    return render(request, 'nucleo/por_marca.html', {'marca': marca, 'produtos': produtos})

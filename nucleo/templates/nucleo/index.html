@@ -1,4 +1,3 @@
-
 {% extends 'nucleo/base.html' %}
 
 {% block title %}Página Inicial - NerdHub{% endblock %}
@@ -6,7 +5,8 @@
 {% block content %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,106 +14,88 @@
 </head>
 
 <body>
-    
-<!-- BANNER PRINCIPAL -->
-<section class="banner">
-    <img src="{% static 'img/banner.png' %}" alt="Banner Promocional">
-</section>
 
-<!-- GATILHOS -->
-<section class="beneficios">
-    <div class="beneficio-item">
-      <img src="{% static 'img/icon_cartao.png' %}" alt="icon_cartao">
-      <p>Em até 12x sem juros</p>
-    </div>
+    <!-- BANNER PRINCIPAL -->
+    <section class="banner">
+        <img src="{% static 'img/banner.png' %}" alt="Banner Promocional">
+    </section>
 
-    <div class="beneficio-item">
-      <img src="{% static 'img/icon_carro_entrega.png' %}" alt="icon_carro_entrega">
-      <p>Entrega rápida</p>
-    </div>
-
-    <div class="beneficio-item">
-      <img src="{% static 'img/icon_caixa.png' %}" alt="icon_caixa">
-      <p>Frete grátis</p>
-    </div>
-
-    <div class="beneficio-item">
-      <img src="{% static 'img/icon_pix.png' %}" alt="icon_pix">
-      <p>Selecione o Pix e ganhe 5% de desconto</p>
-    </div>
-
-</section>
-
-<!--
-<section class="eutoperdendoacabeca">
-    <div class="eunaoaguentomais">
-        <div class="estouenlouquecendo">
-        Opcao 1 tabelas
-        <table>
-            <tr>
-                <th class="icon"><img src="" alt="icon_cartao"></th>
-                <th><p> Em até 12x sem juros </p></th>
-                <th class="icon"><img src="" alt="icon_carro_entrega"></th>
-                <th><p>Entrega rápida</p></th>
-                <th class="icon"><img src="" alt="icon_caixa"></th>
-                <th ><p>Frete grátis</p></th>
-                <th class="icon"><img src="" alt="icon_pix"></th>
-                <th><p>Selecione o Pix e ganhe 5% de desconto</p></th>
-            </tr>
-        </table>
-        </div> 
-
-        <div class="estouenlouquecendo2">
-        Opcao 2 paragrafos e images 
-        <img src="" alt="icon_cartao">
-        <p>Em até 12x sem juros</p>
-        <img src="" alt="icon_carro_entrega">
-        <p>Entrega rápida</p>
-        <img src="" alt="icon_caixa">
-        <p>Frete grátis</p>
-        <img src="" alt="icon_pix">
-        <p>Selecione o Pix e ganhe 5% de desconto</p>
+    <!-- GATILHOS -->
+    <section class="beneficios">
+        <div class="beneficio-item">
+            <img src="{% static 'img/icon_cartao.png' %}" alt="icon_cartao">
+            <p>Em até 12x sem juros</p>
         </div>
-    </div> 
 
-</section> -->
+        <div class="beneficio-item">
+            <img src="{% static 'img/icon_carro_entrega.png' %}" alt="icon_carro_entrega">
+            <p>Entrega rápida</p>
+        </div>
 
-<!-- MARCAS FAMOSAS -->
-<section class="marcas-section">
-    <h2>Navegue por Marcas Famosas</h2>
-    <div class="brand-buttons">
-        <button class="brand-img-button" href="#">
-            <img src="{% static 'img/BannerDisney.png' %}" alt="Disney">
-        </button>
-        <button class="brand-img-button" href="#">
-            <img src="{% static 'img/BannerMarvel.png' %}" alt="Marvel">
-        </button>
-        <button class="brand-img-button" href="#">
-            <img src="{% static 'img/BannerStarWars.png' %}" alt="Star Wars">
-        </button>
-        <button class="brand-img-button" href="#">
-            <img src="{% static 'img/BannerPlayStation.png' %}" alt="Play Station">
-        </button>
-        <button class="brand-img-button" href="#">
-            <img src="{% static 'img/BannerXbox.png' %}" alt="Xbox">
-        </button>
-    </div>
-</section>
+        <div class="beneficio-item">
+            <img src="{% static 'img/icon_caixa.png' %}" alt="icon_caixa">
+            <p>Frete grátis</p>
+        </div>
 
-<!-- FUNKOS DO MÊS -->
-<section class="funkos ">
-    <h2>Funkos do Mês</h2>
-    <div class="funko-grid">
-        {% for produto in produtos %}
+        <div class="beneficio-item">
+            <img src="{% static 'img/icon_pix.png' %}" alt="icon_pix">
+            <p>Selecione o Pix e ganhe 5% de desconto</p>
+        </div>
+
+    </section>
+
+    <!-- MARCAS FAMOSAS -->
+    <section class="marcas-section">
+        <h2>Navegue por Marcas Famosas</h2>
+        <div class="brand-buttons">
+            <button class="brand-img-button">
+                <a href="{% url 'produtos_por_marca' 'Disney' %}">
+                    <img src="{% static 'img/BannerDisney.png' %}" alt="Disney">
+                </a>
+            </button>
+            
+            <button class="brand-img-button">
+                <a href="{% url 'produtos_por_marca' 'Marvel' %}">
+                    <img src="{% static 'img/BannerMarvel.png' %}" alt="Marvel">
+                </a>
+            </button>
+
+            <button class="brand-img-button">
+                <a href="{% url 'produtos_por_marca' 'Star Wars' %}">
+                    <img src="{% static 'img/BannerStarWars.png' %}" alt="Star Wars">
+                </a>
+            </button>
+
+            <button class="brand-img-button">
+                <a href="{% url 'produtos_por_marca' 'PlayStation' %}">
+                    <img src="{% static 'img/BannerPlayStation.png' %}" alt="PlayStation">
+                </a>
+            </button>
+
+            <button class="brand-img-button">
+                <a href="{% url 'produtos_por_marca' 'Xbox' %}">
+                    <img src="{% static 'img/BannerXbox.png' %}" alt="Xbox">
+                </a>
+            </button>
+        </div>
+    </section>
+
+    <!-- FUNKOS DO MÊS -->
+    <section class="funkos ">
+        <h2>Funkos do Mês</h2>
+        <div class="funko-grid">
+            {% for produto in produtos %}
             <div class="funko-item">
                 <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="funko-img">
                 <h3>{{ produto.nome }}</h3>
                 <p class="price">R$ {{ produto.preco }}</p>
-                <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
+                <p>Em até 12x sem juros</p>
+                <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver Produto</a>
             </div>
-        {% endfor %}
-    </div>
-</section>
+            {% endfor %}
+        </div>
+    </section>
 </body>
+
 </html>
 {% endblock %}
