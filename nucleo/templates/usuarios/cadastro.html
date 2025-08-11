@@ -26,29 +26,19 @@
 
         <div class="right">
 
-            <form class="login-box" action="{% url 'usuario:conta' %}" method="post"> {% csrf_token %}
+            <form class="login-box" method="post" action="{% url 'usuario:cadastro' %}"> {% csrf_token %}
                 <h2>Seja bem vindo!</h2>
                 <input type="text" placeholder="Usuário*" name="username">
+                <input type="email" placeholder="email*" name="email">
                 <input type="password" placeholder="Senha*" name="senha">
                 <button class="continue-btn">Continuar</button>
 
                 <p class="register-text">
-                    Não tem uma conta? <a href="{% url 'usuario:cadastro'%}">Cadastrar</a>
+                    Já tem uma conta? <a href="{% url 'usuario:conta'%}">Cadastrar</a>
                 </p>
 
-                <div class="divider"><span>Ou</span></div>
+                
 
-                <button class="social">
-                    <img src="{% static 'img/google.png' %}" alt="Google"> Continuar com Google
-                </button>
-
-                <button class="social">
-                    <img src="{% static 'img/microsoft.png' %}" alt="Microsoft"> Continuar com Microsoft
-                </button>
-
-                <button class="social">
-                    <img src="{% static 'img/apple.png' %}" alt="Apple"> Continuar com a Apple
-                </button>
 
             </form>
         </div>
