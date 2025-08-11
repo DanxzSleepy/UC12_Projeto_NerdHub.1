@@ -6,11 +6,44 @@
 {% load static %}
 
 
+<link rel="stylesheet" href="{% static 'css/conta_style.css' %}">
 
 <body>
     
-    <br><br><br><br><br><br><br><br><br><br>
-</body>
+    <main class="container">
+        <div class="left">
+            <img src="{% static 'img/NerdHub_Logo.png' %}" alt="NerdHub Logo" class="logo">
+            <h2>NERD HUB</h2>
+        </div>
 
+        <div class="right">
+            <form class="login-box" action="{% url 'usuario:conta' %}" method="post"> {% csrf_token %}
+                <h2>Seja bem vindo!</h2>
+                <input type="text" placeholder="Usuário*" name="username">
+                <input type="password" placeholder="senha*" name="senha">
+                <button class="continue-btn">Continuar</button>
+
+                <p class="register-text">
+                    Não tem uma conta? <a href="{% url 'usuario:cadastro' %}">Cadastrar</a>
+                </p>
+
+                <div class="divider"><span>Ou</span></div>
+
+                <button class="social">
+                    <img src="{% static 'img/google.png' %}" alt="Google"> Continuar com Google
+                </button>
+
+                <button class="social">
+                    <img src="{% static 'img/microsoft.png' %}" alt="Microsoft"> Continuar com Microsoft
+                </button>
+
+                <button class="social">
+                    <img src="{% static 'img/apple.png' %}" alt="Apple"> Continuar com a Apple
+                </button>
+
+            </form>
+        </div>
+    </main>
+</body>
 
 {% endblock %}

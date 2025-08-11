@@ -1,0 +1,21 @@
+{% extends 'nucleo/base.html' %}
+
+{% block title %}Página Inicial - NerdHub{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/conta_style.css' %}">
+
+<body>
+    
+    <div id="autenticacao">
+        
+        <img src="{% static 'img/verificado' %}" alt="verificado">
+        <h3>Cadastro realizado com sucesso 🥳</h3>
+    </div>    
+
+</body>
+
+{% endblock %}
