@@ -9,8 +9,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="{%  static 'css/por_marca.css' %}"> -->
-  <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style_por_marca.css' %}">
 </head>
 
 <body>
@@ -52,25 +51,23 @@
       <img src="{% static 'img/icon_pix.png' %}" alt="icon_pix">
       <p>Selecione o Pix e ganhe 5% de desconto</p>
     </div>
+  </section>
 
 
-    <!-- LISTA DE PRODUTOS DA MARCA -->
-    <section class="funkos">
-      <h1>{{ marca.nome }}</h1>
-      <div class="produto-lista">
-        {% for produto in produtos %}
-        <div class="produto-item">
-          <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="produto-imagem">
-          <div class="produto-info">
-            <h3>{{ produto.nome }}</h3>
-            <p class="price">R$ {{ produto.preco }}</p>
-            <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
-          </div>
-        </div>
-        {% endfor %}
+  <!-- LISTA DE PRODUTOS DA MARCA -->
+  <section class="produtos-section">
+    <h2>{{ marca.nome }}</h2>
+    <div class="produto-grid">
+      {% for produto in produtos %}
+      <div class="produto-item">
+        <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="produto-imagem">
+        <h3>{{ produto.nome }}</h3>
+        <p class="price">R$ {{ produto.preco }}</p>
+        <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
       </div>
-    </section>
+      {% endfor %}
+    </div>
+  </section>
 </body>
-
 </html>
 {% endblock %}
