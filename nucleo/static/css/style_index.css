@@ -112,6 +112,7 @@
 .funko-item img {
     width: 100%;
     height: auto;
+    border: #2C2C2C solid 1px ;
     object-fit: contain;
     border-radius: 8px;
 }
