@@ -4,13 +4,21 @@
 
 {% block content %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    
 <div class="produto-detalhe-container"
     style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
     <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
         <div style="flex: 1 1 300px; text-align: center;">
             <div class="produto-galeria">
                 <img id="imagem-principal" src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}">
-
                 <div class="miniaturas">
                     <img src="{{ produto.imagem_principal.url }}" onclick="trocarImagem(this)">
                     {% for imagem in produto.imagens_adicionais.all %}
@@ -39,4 +47,7 @@
         </div>
     </div>
 </div>
+</body>
+</html>
+
 {% endblock %}
