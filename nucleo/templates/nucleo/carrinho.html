@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Carrinho - NerdHub{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'nucleo/css/style_carrinho.css' %}">
+<div class="carrinho-container">
+    <h1>🛒 Meu Carrinho</h1>
+
+    {% if itens %}
+        <table class="tabela-carrinho">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itens %}
+                    <tr>
+                        <td>{{ item.produto.nome }}</td>
+                        <td>R$ {{ item.produto.preco|floatformat:2 }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>R$ {{ item.produto.preco|mul:item.quantidade|floatformat:2 }}</td>
+                        <td>
+                            <a href="{% url 'remover_item_carrinho' item.id %}" class="btn-remover">Remover</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="carrinho-total">
+            <h3>Total: R$ {{ total|floatformat:2 }}</h3>
+            <a href="{% url 'finalizar_pedido' %}" class="btn-finalizar">Finalizar Pedido</a>
+        </div>
+    {% else %}
+        <p>Seu carrinho está vazio 😢</p>
+        <a href="{% url 'index' %}" class="btn-voltar">Voltar para a loja</a>
+    {% endif %}
+</div>
+{% endblock %}

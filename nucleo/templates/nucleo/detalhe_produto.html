@@ -1,53 +1,84 @@
 {% extends 'nucleo/base.html' %}
 
-{% block title %}Pagina de detalhe - NerdHub{% endblock %}
 
+{% block title %}{{ produto.nome }} - NerdHub{% endblock %}
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-</head>
-<body>
-    
-<div class="produto-detalhe-container"
-    style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-        <div style="flex: 1 1 300px; text-align: center;">
-            <div class="produto-galeria">
-                <img id="imagem-principal" src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}">
-                <div class="miniaturas">
-                    <img src="{{ produto.imagem_principal.url }}" onclick="trocarImagem(this)">
-                    {% for imagem in produto.imagens_adicionais.all %}
+
+<link rel="stylesheet" href="{% static 'nucleo/css/detalhe_produto.css' %}">
+
+<div class="produto-detalhe-container">
+    <div class="produto-main">
+        <div class="produto-galeria">
+            <img id="imagem-principal" src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}">
+            <div class="miniaturas">
+                <img src="{{ produto.imagem_principal.url }}" onclick="trocarImagem(this)">
+                {% for imagem in produto.imagens_adicionais.all %}
                     <img src="{{ imagem.imagem.url }}" onclick="trocarImagem(this)">
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
-
-            <script>
-                function trocarImagem(elem) {
-                    document.getElementById('imagem-principal').src = elem.src;
-                }
-            </script>
-
         </div>
-        <div style="flex: 2 1 400px;">
+
+        <div class="produto-info">
             <h2>{{ produto.nome }}</h2>
-            <p style="margin: 1rem 0; color: #666;">{{ produto.descricao }}</p>
+            <p class="descricao">{{ produto.descricao }}</p>
             {% if produto.preco %}
-            <p style="font-size: 1.5rem; font-weight: bold; color: #0c4133;">R$ {{ produto.preco }}</p>
+                <p class="preco">R$ {{ produto.preco }}</p>
             {% endif %}
-            <button
-                style="background-color: #0c4133; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
-                Comprar
-            </button>
+            <form action="{% url 'nucleo:adicionar_ao_carrinho' produto.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-comprar" {% if produto.estoque < 1 %}disabled{% endif %}>
+                    {% if produto.estoque < 1 %}Sem estoque{% else %}Adicionar ao carrinho{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="produto-reviews">
+        <h3>Avaliações</h3>
+        {% for review in reviews %}
+            <div class="review">
+                <strong>{{ review.usuario.username }}</strong> - ⭐{{ review.nota }}
+                <p>{{ review.texto }}</p>
+            </div>
+        {% empty %}
+            <p>Seja o primeiro a avaliar!</p>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <form action="{% url 'adicionar_review' produto.id %}" method="post">
+            {% csrf_token %}
+            <textarea name="texto" required></textarea>
+            <select name="nota">
+                {% for i in "12345" %}
+                <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Enviar</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <div class="produtos-relacionados">
+        <h3>Produtos relacionados</h3>
+        <div class="lista-relacionados">
+            {% for p in relacionados %}
+                <div class="item-relacionado">
+                    <a href="{% url 'detalhe_produto' p.id %}">
+                        <img src="{{ p.imagem_principal.url }}" alt="{{ p.nome }}">
+                        <p>{{ p.nome }}</p>
+                    </a>
+                </div>
+            {% empty %}
+                <p>Sem produtos relacionados</p>
+            {% endfor %}
         </div>
     </div>
 </div>
-</body>
-</html>
 
+<script>
+function trocarImagem(elem) {
+    document.getElementById('imagem-principal').src = elem.src;
+}
+</script>
 {% endblock %}

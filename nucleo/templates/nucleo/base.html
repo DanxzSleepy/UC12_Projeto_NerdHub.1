@@ -16,7 +16,7 @@
     <header class="top-header">
         <div class="top-bar">
             <div class="logo">
-                <a href="{% url 'index' %}">NERDHUB</a>
+                <a href="{% url 'nucleo:index' %}">NERDHUB</a>
             </div>
             <div class="search-container">
                 <input class="search-input" type="text" placeholder="O que você está procurando?">
@@ -25,47 +25,24 @@
                 </button>
             </div>
             <div class="icons">
-                <a href="#">🛒</a>
-               <a href="{% url 'usuario:conta' %}">entrar</a>
+                <a href="{% url 'nucleo:ver_carrinho' %}">🛒</a>
+               
             </div>
         </div>
-        <!-- NAVEGACAO VERSAO 1 -->
-        <!-- <nav class="main-nav">
-            <ul>
-                <li><a href="{% url 'index' %}">Principal</a></li>
-                <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
-                <li><a href="{% url 'suporte' %}">Suporte</a></li>
-            </ul>
-        </nav> -->
-
-        <!-- NAVEGACAO VERSAO 2 -->
-        <!-- <nav class="main-nav">
-            <ul style="display: flex; gap: 1rem; list-style: none;">
-                <li><a href="{% url 'index' %}"
-                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'index' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Início</a>
-                </li>
-                <li><a href="{% url 'sobre' %}"
-                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'sobre' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Sobre</a>
-                </li>
-                <li><a href="{% url 'suporte' %}"
-                        style="padding: 0.5rem 1rem; background-color: {% if page_name == 'suporte' %}#0c4133{% else %}transparent{% endif %}; color: white; border-radius: 8px;">Suporte</a>
-                </li>
-            </ul>
-        </nav>  -->
-
+      
         <!-- NAVEGACAO VERSAO 3 -->
         <nav class="main-nav">
             <ul>
                 <li>
-                    <a href="{% url 'index' %}"
+                    <a href="{% url 'nucleo:index' %}"
                         class="nav-link {% if page_name == 'index' %}active{% endif %}">Início</a>
                 </li>
                 <li>
-                    <a href="{% url 'sobre' %}"
+                    <a href="{% url 'nucleo:sobre' %}"
                         class="nav-link {% if page_name == 'sobre' %}active{% endif %}">Sobre</a>
                 </li>
                 <li>
-                    <a href="{% url 'suporte' %}"
+                    <a href="{% url 'nucleo:suporte' %}"
                         class="nav-link {% if page_name == 'suporte' %}active{% endif %}">Suporte</a>
                 </li>
             </ul>
@@ -88,10 +65,10 @@
             <div>
                 <h4>Links Rápidos</h4>
                 <ul>
-                    <li><a href="{% url 'index' %}">Principal</a></li>
-                    <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
+                    <li><a href="{% url 'nucleo:index' %}">Principal</a></li>
+                    <li><a href="{% url 'nucleo:sobre' %}">Sobre Nós</a></li>
                     <li><a href="#">Loja</a></li>
-                    <li><a href="{% url 'suporte' %}">Suporte</a></li>
+                    <li><a href="{% url 'nucleo:suporte' %}">Suporte</a></li>
                 </ul>
             </div>
             <div>
