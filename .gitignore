@@ -2,14 +2,14 @@
 venv/
 .env
 
-# Byte-compiled / cache
-# __pycache__/
-# *.py[cod]
-# *.sqlite3
+Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.sqlite3
 
-# Arquivos de banco de dados e logs
-# db.sqlite3
-# *.log
+Arquivos de banco de dados e logs
+db.sqlite3
+*.log
 
 # Configs do sistema operacional
 .DS_Store

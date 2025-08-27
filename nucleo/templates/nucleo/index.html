@@ -49,31 +49,31 @@
         <h2>Navegue por Marcas Famosas</h2>
         <div class="brand-buttons">
             <button class="brand-img-button">
-                <a href="{% url 'produtos_por_marca' 'Disney' %}">
+                <a href="{% url 'nucleo:produtos_por_marca' 'Disney' %}">
                     <img src="{% static 'img/BannerDisney.png' %}" alt="Disney">
                 </a>
             </button>
             
             <button class="brand-img-button">
-                <a href="{% url 'produtos_por_marca' 'Marvel' %}">
+                <a href="{% url 'nucleo:produtos_por_marca' 'Marvel' %}">
                     <img src="{% static 'img/BannerMarvel.png' %}" alt="Marvel">
                 </a>
             </button>
 
             <button class="brand-img-button">
-                <a href="{% url 'produtos_por_marca' 'Star Wars' %}">
+                <a href="{% url 'nucleo:produtos_por_marca' 'Star Wars' %}">
                     <img src="{% static 'img/BannerStarWars.png' %}" alt="Star Wars">
                 </a>
             </button>
 
             <button class="brand-img-button">
-                <a href="{% url 'produtos_por_marca' 'PlayStation' %}">
+                <a href="{% url 'nucleo:produtos_por_marca' 'PlayStation' %}">
                     <img src="{% static 'img/BannerPlayStation.png' %}" alt="PlayStation">
                 </a>
             </button>
 
             <button class="brand-img-button">
-                <a href="{% url 'produtos_por_marca' 'Xbox' %}">
+                <a href="{% url 'nucleo:produtos_por_marca' 'Xbox' %}">
                     <img src="{% static 'img/BannerXbox.png' %}" alt="Xbox">
                 </a>
             </button>
@@ -90,7 +90,7 @@
                 <h3>{{ produto.nome }}</h3>
                 <p class="price">R$ {{ produto.preco }}</p>
                 <p>Em até 12x sem juros</p>
-                <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver Produto</a>
+                <a href="{% url 'nucleo:detalhe_produto' produto.id %}" class="btn">Ver Produto</a>
             </div>
             {% endfor %}
         </div>
@@ -98,4 +98,6 @@
 </body>
 
 </html>
+
+<!-- era um problema de app eu acho? -->
 {% endblock %}
