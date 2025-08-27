@@ -64,7 +64,7 @@
         <div class="lista-relacionados">
             {% for p in relacionados %}
                 <div class="item-relacionado">
-                    <a href="{% url 'detalhe_produto' p.id %}">
+                    <a href="{% url 'nucleo:detalhe_produto' p.id %}">
                         <img src="{{ p.imagem_principal.url }}" alt="{{ p.nome }}">
                         <p>{{ p.nome }}</p>
                     </a>

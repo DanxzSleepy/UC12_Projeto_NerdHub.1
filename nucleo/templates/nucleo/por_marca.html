@@ -63,7 +63,7 @@
         <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="produto-imagem">
         <h3>{{ produto.nome }}</h3>
         <p class="price">R$ {{ produto.preco }}</p>
-        <a href="{% url 'detalhe_produto' produto.id %}" class="btn">Ver mais</a>
+        <a href="{% url 'nucleo:detalhe_produto' produto.id %}" class="btn">Ver mais</a>
       </div>
       {% endfor %}
     </div>

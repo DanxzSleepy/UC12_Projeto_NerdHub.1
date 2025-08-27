@@ -5,7 +5,7 @@ app_name = 'usuario'
 
 urlpatterns = [
     
-    path('', views.conta, name='conta' ),
+    path('conta', views.conta, name='conta' ),
     path('cadastro', views.cadastro, name='cadastro')
     
 ]

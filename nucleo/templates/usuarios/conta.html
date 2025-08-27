@@ -1,16 +1,20 @@
 {% extends 'nucleo/base.html' %}
 
-{% block title %}Página Inicial - NerdHub{% endblock %}
+{% block title %}Login - NerdHub{% endblock %}
 
 {% block content %}
 {% load static %}
 
+<div style="margin-top: 120px; text-align: center;">
+    <h2>Entrar</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Usuário" required><br><br>
+        <input type="password" name="senha" placeholder="Senha" required><br><br>
+        <button type="submit">Entrar</button>
+    </form>
 
-
-<body>
-    
-    <br><br><br><br><br><br><br><br><br><br>
-</body>
-
+    <p>Não tem conta? <a href="{% url 'usuario:cadastro' %}">Cadastre-se aqui</a></p>
+</div>
 
 {% endblock %}

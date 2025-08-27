@@ -1,0 +1,23 @@
+{% extends 'nucleo/base.html' %}
+
+{% block title %}Login - NerdHub{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<h2>Cadastro</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Usuário:</label>
+    <input type="text" name="username" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required><br><br>
+
+    <label for="senha">Senha:</label>
+    <input type="password" name="senha" required><br><br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}
