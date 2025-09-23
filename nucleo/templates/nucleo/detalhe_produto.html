@@ -46,7 +46,7 @@
         {% endfor %}
 
         {% if user.is_authenticated %}
-        <form action="{% url 'adicionar_review' produto.id %}" method="post">
+        <form action="{% url 'nucleo:adicionar_review' produto.id %}" method="post">
             {% csrf_token %}
             <textarea name="texto" required></textarea>
             <select name="nota">
