@@ -20,12 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# NOTE: In production, this should be set as an environment variable
 SECRET_KEY = 'django-insecure-1dov81@qkgj1ikl!rea^=36fu(gj#9e=n6brqucif(i4m+xuu-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# NOTE: Set to False in production
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# NOTE: Add your domain names in production
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nucleo',
     'usuarios',
-    
 ]
 
 MIDDLEWARE = [
@@ -106,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -128,3 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email configuration for development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Authentication settings
+LOGIN_URL = 'usuario:conta'
+LOGIN_REDIRECT_URL = 'nucleo:index'
+LOGOUT_REDIRECT_URL = 'nucleo:index'
