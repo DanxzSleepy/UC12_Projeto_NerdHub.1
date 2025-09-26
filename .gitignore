@@ -132,3 +132,12 @@ dmypy.json
 .idea/
 *.swp
 *.swo
+
+# Pastas Aleatorias
+Fotos_nerhub(aqui sao as fotos onde e como site deve se parecer(pode mudar algumas coisas se quiser))/
+data/
+logs/
+results/
+outputs/
+models/
+checkpoints/
