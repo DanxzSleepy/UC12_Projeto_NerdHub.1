@@ -127,6 +127,6 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ## 📧 Contato
 
-Seu Nome - seu.email@exemplo.com
+Seu Nome - (ainda nao criei o email)
 
-Link do Projeto: [https://github.com/seu-usuario/UC12_Projeto_NerdHub.1](https://github.com/seu-usuario/UC12_Projeto_NerdHub.1)
+Link do Projeto: [https://github.com/DanxzSleepy/UC12_Projeto_NerdHub.1](https://github.com/seu-usuario/UC12_Projeto_NerdHub.1)
