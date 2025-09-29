@@ -2,52 +2,109 @@
     max-width: 900px;
     margin: 40px auto;
     padding: 20px;
-    background: #121212;
+    background: #ffffff;
     border-radius: 10px;
-    color: #fff;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .carrinho-container h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #0c4133;
 }
 
 .tabela-carrinho {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    background: #f9f9f9;
 }
 
 .tabela-carrinho th, .tabela-carrinho td {
-    border-bottom: 1px solid #333;
-    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
     text-align: center;
+}
+
+.tabela-carrinho th {
+    background-color: #0c4133;
+    color: white;
+}
+
+.tabela-carrinho tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabela-carrinho tr:hover {
+    background-color: #e8f5e9;
 }
 
 .btn-remover {
     background: #ff4c4c;
-    padding: 5px 10px;
+    padding: 8px 12px;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.btn-remover:hover {
+    background: #e60000;
 }
 
 .carrinho-total {
     text-align: right;
+    margin-top: 20px;
+}
+
+.carrinho-total h3 {
+    color: #0c4133;
 }
 
 .btn-finalizar {
     background: #28a745;
-    padding: 10px 15px;
+    padding: 12px 20px;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+    transition: background 0.3s;
+}
+
+.btn-finalizar:hover {
+    background: #218838;
 }
 
 .btn-voltar {
     background: #007bff;
-    padding: 10px 15px;
+    padding: 12px 20px;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+.btn-voltar:hover {
+    background: #0069d9;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .tabela-carrinho {
+        font-size: 14px;
+    }
+    
+    .tabela-carrinho th, .tabela-carrinho td {
+        padding: 8px;
+    }
+    
+    .carrinho-container {
+        padding: 15px;
+        margin: 20px;
+    }
 }

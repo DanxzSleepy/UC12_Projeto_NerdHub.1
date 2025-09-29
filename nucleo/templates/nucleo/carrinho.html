@@ -22,6 +22,7 @@
             <tbody>
                 {% for item_com_total in itens_com_total %}
                     <tr>
+                        <td><img src="{{ item_com_total.item.produto.imagem_principal.url }}" width="60px"></td>
                         <td>{{ item_com_total.item.produto.nome }}</td>
                         <td>R$ {{ item_com_total.item.produto.preco|floatformat:2 }}</td>
                         <td>{{ item_com_total.item.quantidade }}</td>

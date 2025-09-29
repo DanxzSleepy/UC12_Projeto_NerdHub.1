@@ -5,12 +5,14 @@
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #333;
 }
 
 .produto-main {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .produto-galeria {
@@ -36,10 +38,20 @@
     object-fit: cover;
     cursor: pointer;
     border-radius: 4px;
+    border: 2px solid transparent;
+}
+
+.miniaturas img:hover {
+    border-color: #0c4133;
 }
 
 .produto-info {
     flex: 2 1 400px;
+}
+
+.produto-info h2 {
+    color: #0c4133;
+    margin-top: 0;
 }
 
 .descricao {
@@ -61,10 +73,26 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.btn-comprar:hover {
+    background-color: #0e614b;
+}
+
+.btn-comprar:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .produto-reviews {
     margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.produto-reviews h3 {
+    color: #0c4133;
 }
 
 .review {
@@ -76,6 +104,12 @@
 
 .produtos-relacionados {
     margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.produtos-relacionados h3 {
+    color: #0c4133;
 }
 
 .lista-relacionados {
@@ -92,4 +126,13 @@
 .item-relacionado img {
     width: 100%;
     border-radius: 8px;
+}
+
+.item-relacionado a {
+    text-decoration: none;
+    color: #333;
+}
+
+.item-relacionado a:hover {
+    color: #0c4133;
 }
