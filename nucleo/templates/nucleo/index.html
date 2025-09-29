@@ -4,16 +4,7 @@
 
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
-</head>
-
-<body>
+<link rel="stylesheet" href="{% static 'css/style_index.css' %}">
 
     <!-- BANNER PRINCIPAL -->
     <section class="banner">
@@ -95,9 +86,4 @@
             {% endfor %}
         </div>
     </section>
-</body>
-
-</html>
-
-<!-- era um problema de app eu acho? -->
 {% endblock %}
