@@ -9,39 +9,49 @@
     <h1>🛒 Meu Carrinho</h1>
 
     {% if itens_com_total %}
-        <table class="tabela-carrinho">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="carrinho-conteudo">
+            <!-- Coluna dos Itens -->
+            <div class="carrinho-itens">
                 {% for item_com_total in itens_com_total %}
-                    <tr>
-                        <td><img src="{{ item_com_total.item.produto.imagem_principal.url }}" width="60px"></td>
-                        <td>{{ item_com_total.item.produto.nome }}</td>
-                        <td>R$ {{ item_com_total.item.produto.preco|floatformat:2 }}</td>
-                        <td>{{ item_com_total.item.quantidade }}</td>
-                        <td>R$ {{ item_com_total.total|floatformat:2 }}</td>
-                        <td>
+                    <div class="carrinho-item">
+                        <div class="item-imagem">
+                            <img src="{{ item_com_total.item.produto.imagem_principal.url }}" alt="{{ item_com_total.item.produto.nome }}">
+                        </div>
+                        <div class="item-detalhes">
+                            <h3>{{ item_com_total.item.produto.nome }}</h3>
+                            <p class="item-preco">R$ {{ item_com_total.item.produto.preco|floatformat:2 }}</p>
+                        </div>
+                        <div class="item-quantidade">
+                            <span>Quantidade: {{ item_com_total.item.quantidade }}</span>
+                        </div>
+                        <div class="item-total">
+                            <p>R$ {{ item_com_total.total|floatformat:2 }}</p>
+                        </div>
+                        <div class="item-acao">
                             <a href="{% url 'nucleo:remover_item_carrinho' item_com_total.item.id %}" class="btn-remover">Remover</a>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="carrinho-total">
-            <h3>Total: R$ {{ total|floatformat:2 }}</h3>
-            <a href="{% url 'nucleo:finalizar_pedido' %}" class="btn-finalizar">Finalizar Pedido</a>
+            </div>
+        </div>
+        <!-- Coluna do Resumo -->
+        <div class="carrinho-resumo">
+            <div class="resumo-card">
+                <h3>Resumo do Pedido</h3>
+                <div class="resumo-linha">
+                    <span>Total:</span>
+                    <span class="resumo-total">R$ {{ total|floatformat:2 }}</span>
+                </div>
+                <a href="{% url 'nucleo:finalizar_pedido' %}" class="btn-finalizar">Finalizar Pedido</a>
+                <a href="{% url 'nucleo:index' %}" class="btn-continuar">Continuar Comprando</a>
+            </div>
         </div>
     {% else %}
-        <p>Seu carrinho está vazio 😢</p>
-        <a href="{% url 'nucleo:index' %}" class="btn-voltar">Voltar para a loja</a>
+        <div class="carrinho-vazio">
+            <p>Seu carrinho está vazio 😢</p>
+            <a href="{% url 'nucleo:index' %}" class="btn-voltar">Voltar para a loja</a>
+        </div>
     {% endif %}
 </div>
+
 {% endblock %}

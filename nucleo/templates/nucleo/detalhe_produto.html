@@ -38,8 +38,7 @@
         <h3>Avaliações</h3>
         {% for review in reviews %}
             <div class="review">
-                <strong>{{ review.usuario.username }}</strong> - ⭐{{ review.nota }}
-                <p>{{ review.texto }}</p>
+                <strong>{{ review.usuario.username }}</strong> - ⭐{{ review.nota }} <p>{{ review.texto }}</p>
             </div>
         {% empty %}
             <p>Seja o primeiro a avaliar!</p>
