@@ -21,6 +21,30 @@ NerdHub é um e-commerce desenvolvido em Django para venda de produtos nerd, inc
 - Autenticação de usuários (cadastro e login)
 - Páginas institucionais (Sobre, Suporte)
 
+## 📦 Versionamento
+
+Este projeto utiliza o versionamento semântico (Semantic Versioning - SemVer) para gerenciar as versões do software. O formato da versão segue a estrutura **MAJOR.MINOR.PATCH**, onde:
+
+- **MAJOR** (Principal): Incrementado quando há mudanças incompatíveis na API ou funcionalidades principais que quebram a compatibilidade.
+- **MINOR** (Secundária): Incrementado quando há adições de funcionalidades compatíveis com versões anteriores.
+- **PATCH** (Correção): Incrementado quando há correções de bugs ou pequenas melhorias que não afetam a compatibilidade.
+
+### Exemplos de Versionamento:
+- `v1.0.0`: Primeira versão estável do projeto, com funcionalidades básicas implementadas(Exemplo MAJOR).
+- `v1.1.0`: Adição de novas funcionalidades compatíveis, como melhorias no sistema de carrinho(Exemplo MINOR).
+- `v1.1.1`: Correção de bugs menores, como ajustes na interface(Exemplo PATCH).
+- `v2.0.0`: Mudanças significativas, como reestruturação completa do sistema ou quebra de compatibilidade.
+
+A versão atual do projeto é **v1.0.0**, representando o lançamento inicial com todas as funcionalidades básicas do e-commerce implementadas.
+
+### Funcionalidades da Versão v1.0.0:
+- **Catálogo de Produtos**: Organização de produtos por marcas (Marvel, Star Wars, Disney, PlayStation, Xbox) e categorias, com imagens principais e adicionais.
+- **Sistema de Carrinho e Pedidos**: Adição de produtos ao carrinho, ajuste de quantidades, cálculo de totais e finalização de pedidos.
+- **Avaliações e Comentários**: Sistema de reviews com comentários e notas de 1 a 5 estrelas para produtos.
+- **Controle de Estoque**: Gestão de quantidades disponíveis para cada produto.
+- **Autenticação de Usuários**: Cadastro, login e perfil de usuário.
+- **Páginas Institucionais**: Seções "Sobre" e "Suporte" com informações da empresa e atendimento.
+
 ## 🚀 Instalação
 
 1. **Clone o repositório:**
