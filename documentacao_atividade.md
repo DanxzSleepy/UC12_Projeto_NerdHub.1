@@ -286,7 +286,7 @@ A aplicação atualizada está apta para ser liberada (Go-Live). As correções 
 
 ## 👥 Equipe Responsável
 
-- Desenvolvedores do Projeto NerdHub e uns caba ai
+- Desenvolvedor do Projeto NerdHub e uns caba ai k
 - Professor Orientador: Douglas Antero
 
 ---
