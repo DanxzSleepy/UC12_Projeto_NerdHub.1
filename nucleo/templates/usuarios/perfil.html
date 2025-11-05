@@ -1,215 +1,566 @@
 {% extends 'nucleo/base.html' %}
 
-{% block title %}Meu Perfil - NerdHub{% endblock %}
+{% block title %}Configurações de Perfil - NerdHub{% endblock %}
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style_perfil.css' %}">
+<link rel="stylesheet" href="{% static 'css/style_perfil_novo.css' %}">
 
-<div class="container mt-5">
-    <h2>Meu Perfil</h2>
-    
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
-    
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Informações Pessoais</h5>
+<div class="container mx-auto px-6 py-8 min-h-screen">
+    <div class="flex gap-8">
+        <!-- Sidebar -->
+        <aside class="w-64 glass-effect p-6 h-fit sticky top-24">
+            <h2 class="text-white font-semibold text-lg mb-6">Configurações</h2>
+            <nav class="space-y-2">
+                <div class="sidebar-item active px-4 py-3 rounded-lg cursor-pointer" data-tab="perfil">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-user-line text-white"></i>
+                        </div>
+                        <span class="text-white">Perfil</span>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="sidebar-item px-4 py-3 rounded-lg cursor-pointer" data-tab="seguranca">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-shield-line text-white"></i>
+                        </div>
+                        <span class="text-white">Segurança</span>
+                    </div>
+                </div>
+                <div class="sidebar-item px-4 py-3 rounded-lg cursor-pointer" data-tab="endereco">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-map-pin-line text-white"></i>
+                        </div>
+                        <span class="text-white">Endereço</span>
+                    </div>
+                </div>
+                <div class="sidebar-item px-4 py-3 rounded-lg cursor-pointer" data-tab="preferencias">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-settings-line text-white"></i>
+                        </div>
+                        <span class="text-white">Preferências</span>
+                    </div>
+                </div>
+                <div class="sidebar-item px-4 py-3 rounded-lg cursor-pointer" data-tab="privacidade">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-lock-line text-white"></i>
+                        </div>
+                        <span class="text-white">Privacidade</span>
+                    </div>
+                </div>
+                <div class="sidebar-item px-4 py-3 rounded-lg cursor-pointer" data-tab="conta">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-account-circle-line text-white"></i>
+                        </div>
+                        <span class="text-white">Conta</span>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo das abas -->
+        <div class="flex-1">
+            <!-- Aba Perfil -->
+            <div id="perfil" class="tab-content p-8">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Perfil</h2>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-6">
+                        <div class="relative">
+                            <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                                <div class="w-16 h-16 flex items-center justify-center">
+                                    <i class="ri-user-line text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-500 transition-colors">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-camera-line text-white text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <button class="bg-secondary text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors">Mudar Foto</button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-red-600 transition-colors ml-2">Remover</button>
+                        </div>
+                    </div>
+
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="display_name" class="form-label">Nome de Exibição</label>
-                            <input type="text" class="form-control" id="display_name" name="display_name" value="{{ perfil.display_name }}">
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="first_name" class="form-label">Primeiro Nome</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ perfil.first_name }}">
-                                </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">Nome de Perfil</label>
+                                <input type="text" name="display_name" value="{{ perfil.display_name }}" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="last_name" class="form-label">Último Nome</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ perfil.last_name }}">
-                                </div>
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">Nome Completo</label>
+                                <input type="text" name="full_name" value="{{ perfil.first_name }} {{ perfil.last_name }}" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="birth_date" class="form-label">Data de Nascimento</label>
-                                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ perfil.birth_date|date:'Y-m-d' }}">
-                                </div>
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">E-mail</label>
+                                <input type="email" value="{{ perfil.user.email }}" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" readonly>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="gender" class="form-label">Gênero</label>
-                                    <select class="form-control" id="gender" name="gender">
-                                        <option value="">Selecione</option>
-                                        <option value="male" {% if perfil.gender == 'male' %}selected{% endif %}>Masculino</option>
-                                        <option value="female" {% if perfil.gender == 'female' %}selected{% endif %}>Feminino</option>
-                                        <option value="other" {% if perfil.gender == 'other' %}selected{% endif %}>Outro</option>
-                                        <option value="prefer_not" {% if perfil.gender == 'prefer_not' %}selected{% endif %}>Prefiro não informar</option>
-                                    </select>
-                                </div>
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">Telefone</label>
+                                <input type="tel" name="phone" value="{{ perfil.phone }}" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">Data de Nascimento</label>
+                                <input type="date" name="birth_date" value="{{ perfil.birth_date|date:'Y-m-d' }}" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-white text-sm font-medium mb-2">Gênero</label>
+                                <select name="gender" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="">Selecione</option>
+                                    <option value="male" {% if perfil.gender == 'male' %}selected{% endif %}>Masculino</option>
+                                    <option value="female" {% if perfil.gender == 'female' %}selected{% endif %}>Feminino</option>
+                                    <option value="other" {% if perfil.gender == 'other' %}selected{% endif %}>Outro</option>
+                                    <option value="prefer_not" {% if perfil.gender == 'prefer_not' %}selected{% endif %}>Prefiro não informar</option>
+                                </select>
                             </div>
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ perfil.phone }}">
+                        <div class="mt-8">
+                            <button type="submit" class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-teal-600 transition-colors font-medium">
+                                Salvar Alterações
+                            </button>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label for="bio" class="form-label">Biografia</label>
-                            <textarea class="form-control" id="bio" name="bio" rows="3">{{ perfil.bio }}</textarea>
-                        </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="newsletter_subscribed" name="newsletter_subscribed" {% if perfil.newsletter_subscribed %}checked{% endif %}>
-                            <label class="form-check-label" for="newsletter_subscribed">
-                                Inscrever-se na newsletter
-                            </label>
-                        </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="marketing_opt_in" name="marketing_opt_in" {% if perfil.marketing_opt_in %}checked{% endif %}>
-                            <label class="form-check-label" for="marketing_opt_in">
-                                Receber comunicações de marketing
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                     </form>
                 </div>
             </div>
-            
-            <!-- Seção de Preferências -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5>Preferências</h5>
+
+            <!-- Aba Segurança -->
+            <div id="seguranca" class="tab-content p-8 hidden">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Segurança</h2>
                 </div>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="language" class="form-label">Idioma</label>
-                                    <select class="form-control" id="language" name="language">
-                                        <option value="pt-BR" {% if perfil.language == 'pt-BR' %}selected{% endif %}>Português (Brasil)</option>
-                                        <option value="en-US" {% if perfil.language == 'en-US' %}selected{% endif %}>English (United States)</option>
-                                    </select>
+                
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <h3 class="text-lg text-white">Alterar Senha</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                    <label class="block text-white text-sm font-medium mb-2">Senha Atual</label>
+                                    <input type="password" name="current_password" placeholder="Digite sua senha atual" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-white text-sm font-medium mb-2">Nova Senha</label>
+                                    <input type="password" name="new_password" placeholder="Digite sua nova senha" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-white text-sm font-medium mb-2">Confirmar Nova Senha</label>
+                                    <input type="password" name="confirm_password" placeholder="Confirme sua nova senha" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="currency" class="form-label">Moeda</label>
-                                    <select class="form-control" id="currency" name="currency">
-                                        <option value="BRL" {% if perfil.currency == 'BRL' %}selected{% endif %}>Real Brasileiro</option>
-                                        <option value="USD" {% if perfil.currency == 'USD' %}selected{% endif %}>Dólar Americano</option>
-                                    </select>
-                                </div>
+                            
+                            <div class="mt-6">
+                                <button type="submit" class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-teal-600 transition-colors font-medium">
+                                    Alterar Senha
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-8">
+                        <h3 class="text-lg text-white mb-6">Autenticação em Dois Fatores</h3>
+                        <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                            <div>
+                                <p class="text-white font-medium">Ativar 2FA</p>
+                                <p class="text-gray-400 text-sm">Adicione uma camada extra de segurança à sua conta</p>
+                            </div>
+                            <div class="toggle-switch" data-toggle="2fa">
+                                <div class="toggle-slider"></div>
                             </div>
                         </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="display_prices_with_tax" name="display_prices_with_tax" {% if perfil.display_prices_with_tax %}checked{% endif %}>
-                            <label class="form-check-label" for="display_prices_with_tax">
-                                Exibir preços com impostos
-                            </label>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-8">
+                        <h3 class="text-lg text-white mb-6">Sessões Ativas</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-computer-line text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-medium">Chrome - Windows</p>
+                                        <p class="text-gray-400 text-sm">São Paulo, Brasil • Ativo agora</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-400 text-sm">Atual</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 bg-gray-600 rounded-lg flex items-center justify-center">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-smartphone-line text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-medium">Mobile App - iOS</p>
+                                        <p class="text-gray-400 text-sm">São Paulo, Brasil • 2 horas atrás</p>
+                                    </div>
+                                </div>
+                                <button class="text-red-400 hover:text-red-300 text-sm">Encerrar</button>
+                            </div>
                         </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="receive_back_in_stock_alerts" name="receive_back_in_stock_alerts" {% if perfil.receive_back_in_stock_alerts %}checked{% endif %}>
-                            <label class="form-check-label" for="receive_back_in_stock_alerts">
-                                Receber alertas de reposição
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar Preferências</button>
-                    </form>
+                        <button class="mt-6 bg-red-500 text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-red-600 transition-colors">
+                            Sair de Todos os Dispositivos
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Links Rápidos</h5>
+
+            <!-- Aba Endereço -->
+            <div id="endereco" class="tab-content p-8 hidden">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Endereço</h2>
+                    <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-teal-600 transition-colors">
+                        Adicionar Endereço
+                    </button>
                 </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a href="{% url 'usuario:enderecos' %}">Gerenciar Endereços</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Gerenciar Formas de Pagamento</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Histórico de Pedidos</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Configurações de Segurança</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">Preferências de Notificação</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Seção de Perfil Público -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5>Perfil Público</h5>
-                </div>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="preferred_display_style" class="form-label">Estilo de Exibição</label>
-                            <select class="form-control" id="preferred_display_style" name="preferred_display_style">
-                                <option value="real_name" {% if perfil.preferred_display_style == 'real_name' %}selected{% endif %}>Nome real</option>
-                                <option value="username" {% if perfil.preferred_display_style == 'username' %}selected{% endif %}>Nome de usuário</option>
-                                <option value="display_name" {% if perfil.preferred_display_style == 'display_name' %}selected{% endif %}>Nome de exibição</option>
+                
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">País</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="BR" selected>Brasil</option>
                             </select>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label for="profile_visibility" class="form-label">Visibilidade do Perfil</label>
-                            <select class="form-control" id="profile_visibility" name="profile_visibility">
-                                <option value="private" {% if perfil.profile_visibility == 'private' %}selected{% endif %}>Privado</option>
-                                <option value="friends_only" {% if perfil.profile_visibility == 'friends_only' %}selected{% endif %}>Apenas amigos</option>
-                                <option value="public" {% if perfil.profile_visibility == 'public' %}selected{% endif %}>Público</option>
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">Estado</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="SP" selected>São Paulo</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="MG">Minas Gerais</option>
                             </select>
                         </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="show_order_history_public" name="show_order_history_public" {% if perfil.show_order_history_public %}checked{% endif %}>
-                            <label class="form-check-label" for="show_order_history_public">
-                                Mostrar histórico de pedidos publicamente
-                            </label>
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">Cidade</label>
+                            <input type="text" value="São Paulo" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar Configurações Públicas</button>
-                    </form>
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">CEP</label>
+                            <input type="text" value="01234-567" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2">Endereço</label>
+                        <input type="text" value="Rua das Flores" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">Número</label>
+                            <input type="text" value="123" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-white text-sm font-medium mb-2">Complemento</label>
+                            <input type="text" value="Apartamento 45B" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2">Ponto de Referência</label>
+                        <input type="text" value="Próximo ao Shopping Center" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-teal-600 transition-colors font-medium">
+                            Salvar Endereço
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba Preferências -->
+            <div id="preferencias" class="tab-content p-8 hidden">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Preferências</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-lg text-white">Notificações</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div>
+                                    <p class="text-white font-medium">Receber notificações por e-mail</p>
+                                    <p class="text-gray-400 text-sm">Receba atualizações sobre pedidos e promoções</p>
+                                </div>
+                                <div class="toggle-switch active" data-toggle="email">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div>
+                                    <p class="text-white font-medium">Receber notificações por SMS</p>
+                                    <p class="text-gray-400 text-sm">Alertas importantes sobre sua conta</p>
+                                </div>
+                                <div class="toggle-switch" data-toggle="sms">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-6">
+                        <h3 class="text-lg text-white mb-4">Personalização</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div>
+                                    <p class="text-white font-medium">Recomendações personalizadas</p>
+                                    <p class="text-gray-400 text-sm">Sugestões baseadas no seu histórico</p>
+                                </div>
+                                <div class="toggle-switch active" data-toggle="recommendations">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div>
+                                    <p class="text-white font-medium">Salvar histórico de pesquisa</p>
+                                    <p class="text-gray-400 text-sm">Melhore suas próximas buscas</p>
+                                </div>
+                                <div class="toggle-switch active" data-toggle="history">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                                <div>
+                                    <p class="text-white font-medium">Mostrar status online</p>
+                                    <p class="text-gray-400 text-sm">Outros usuários podem ver quando você está ativo</p>
+                                </div>
+                                <div class="toggle-switch" data-toggle="online-status">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba Privacidade -->
+            <div id="privacidade" class="tab-content p-8 hidden">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Privacidade</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-lg text-white">Visibilidade do Perfil</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
+                                <div class="custom-checkbox checked" data-checkbox="public-profile"></div>
+                                <div>
+                                    <p class="text-white font-medium">Perfil público</p>
+                                    <p class="text-gray-400 text-sm">Outros usuários podem ver seu perfil básico</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
+                                <div class="custom-checkbox checked" data-checkbox="direct-messages"></div>
+                                <div>
+                                    <p class="text-white font-medium">Permitir mensagens diretas</p>
+                                    <p class="text-gray-400 text-sm">Outros usuários podem enviar mensagens para você</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
+                                <div class="custom-checkbox" data-checkbox="join-date"></div>
+                                <div>
+                                    <p class="text-white font-medium">Exibir data de entrada</p>
+                                    <p class="text-gray-400 text-sm">Mostrar quando você se juntou ao NerdHub</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-6">
+                        <h3 class="text-lg text-white mb-4">Dados e Atividade</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
+                                <div class="custom-checkbox" data-checkbox="activity-tracking"></div>
+                                <div>
+                                    <p class="text-white font-medium">Rastreamento de atividade</p>
+                                    <p class="text-gray-400 text-sm">Permitir coleta de dados para melhorar a experiência</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
+                                <div class="custom-checkbox checked" data-checkbox="analytics"></div>
+                                <div>
+                                    <p class="text-white font-medium">Análise de uso</p>
+                                    <p class="text-gray-400 text-sm">Ajude-nos a melhorar nossos serviços</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-6">
+                        <h3 class="text-lg text-white mb-4">Controle de Dados</h3>
+                        <div class="space-y-3">
+                            <button class="w-full text-left p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-white font-medium">Baixar meus dados</p>
+                                        <p class="text-gray-400 text-sm">Obtenha uma cópia de todos os seus dados</p>
+                                    </div>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-download-line text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="w-full text-left p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-white font-medium">Limpar histórico</p>
+                                        <p class="text-gray-400 text-sm">Remover todo o histórico de navegação e pesquisa</p>
+                                    </div>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-delete-bin-line text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba Conta -->
+            <div id="conta" class="tab-content p-8 hidden">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl text-white">Conta</h2>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <h3 class="text-lg text-white">Informações da Conta</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="p-4 bg-gray-700 rounded-lg">
+                                <p class="text-gray-400 text-sm">Membro desde</p>
+                                <p class="text-white font-medium">{{ perfil.user.date_joined|date:"d F, Y" }}</p>
+                            </div>
+                            <div class="p-4 bg-gray-700 rounded-lg">
+                                <p class="text-gray-400 text-sm">Último acesso</p>
+                                <p class="text-white font-medium">{{ perfil.user.last_login|date:"d F, Y H:i" }}</p>
+                            </div>
+                            <div class="p-4 bg-gray-700 rounded-lg">
+                                <p class="text-gray-400 text-sm">Pedidos realizados</p>
+                                <p class="text-white font-medium">0 pedidos</p>
+                            </div>
+                            <div class="p-4 bg-gray-700 rounded-lg">
+                                <p class="text-gray-400 text-sm">Status da conta</p>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                    <p class="text-white font-medium">Ativa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-8">
+                        <h3 class="text-lg text-white mb-6">Ações da Conta</h3>
+                        <div class="space-y-4">
+                            <button class="w-full bg-primary text-white px-6 py-4 rounded-button whitespace-nowrap hover:bg-teal-600 transition-colors font-medium">
+                                Salvar Alterações
+                            </button>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button class="bg-yellow-600 text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-yellow-700 transition-colors">
+                                    Desativar Temporariamente
+                                </button>
+                                <button class="bg-red-500 text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-red-600 transition-colors">
+                                    Excluir Conta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-600 pt-8">
+                        <h3 class="text-lg text-white mb-6">Exportar Dados</h3>
+                        <div class="space-y-3">
+                            <button class="w-full text-left p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-white font-medium">Exportar histórico de pedidos</p>
+                                        <p class="text-gray-400 text-sm">Baixe um arquivo CSV com todos os seus pedidos</p>
+                                    </div>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-file-excel-line text-green-400"></i>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="w-full text-left p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-white font-medium">Exportar dados pessoais</p>
+                                        <p class="text-gray-400 text-sm">Baixe um arquivo JSON com todas as suas informações</p>
+                                    </div>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-file-code-line text-blue-400"></i>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remover classe active de todos os itens da sidebar
+                sidebarItems.forEach(si => si.classList.remove('active'));
+                // Esconder todos os conteúdos das abas
+                tabContents.forEach(tc => tc.classList.add('hidden'));
+                
+                // Adicionar classe active ao item clicado
+                this.classList.add('active');
+                // Mostrar o conteúdo da aba correspondente
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggles = document.querySelectorAll('.toggle-switch');
+        
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('.custom-checkbox');
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    });
+</script>
 {% endblock %}

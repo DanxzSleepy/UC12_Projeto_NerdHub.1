@@ -1,14 +1,13 @@
-/* PERFIL - CSS - Tema AvoidNess */
+/* PERFIL - CSS - Estilo exato do perfilconfiguracao.html */
 
 /* Importar fontes */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css');
 
-/* Variáveis CSS para cores do tema AvoidNess */
+/* Variáveis CSS */
 :root {
-    --primary-color: #8a2be2;
-    --primary-dark: #4a0080;
-    --secondary-color: #4dc9a7;
+    --primary-color: #14b8a6;
+    --secondary-color: #3b82f6;
     --background-dark: #134e4a;
     --background-medium: #0f766e;
     --background-light: #115e59;
@@ -16,10 +15,6 @@
     --card-border: rgba(255, 255, 255, 0.2);
     --text-light: #ffffff;
     --text-gray: #ddd;
-    --border-color: #444;
-    --success-color: #4dc9a7;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
     --gray-600: #374151;
     --gray-700: #374151;
 }
@@ -86,9 +81,6 @@ body {
     backdrop-filter: blur(10px);
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-}
-
-.rounded-xl {
     border-radius: 0.75rem;
 }
 
@@ -183,9 +175,6 @@ body {
 .text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-}
-
-.font-semibold {
     font-weight: 600;
 }
 
@@ -371,7 +360,7 @@ body {
 
 .focus\:ring-primary:focus {
     --tw-ring-opacity: 1;
-    --tw-ring-color: rgba(138, 43, 226, var(--tw-ring-opacity));
+    --tw-ring-color: rgba(20, 184, 166, var(--tw-ring-opacity));
 }
 
 .focus\:border-transparent:focus {
@@ -523,6 +512,7 @@ body {
 .text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+    font-weight: 500;
 }
 
 .text-gray-400 {
@@ -570,7 +560,7 @@ body {
 }
 
 .bg-red-500 {
-    background-color: var(--danger-color);
+    background-color: #ef4444;
 }
 
 .bg-yellow-600 {

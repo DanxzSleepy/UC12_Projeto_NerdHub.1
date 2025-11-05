@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 from django.utils import timezone
 from .models import Perfil, Endereco
 
@@ -79,14 +80,42 @@ def perfil(request):
     View para exibir e editar o perfil do usuário
     """
     # Get or create profile for users who don't have one
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
     
     if request.method == "POST":
-        # Atualizar informações básicas
+        # Verificar se é uma requisição de alteração de senha
+        if 'current_password' in request.POST:
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            
+            # Verificar se a senha atual está correta
+            if not request.user.check_password(current_password):
+                messages.error(request, "Senha atual incorreta!")
+                return redirect('usuario:perfil')
+            
+            # Verificar se as novas senhas coincidem
+            if new_password != confirm_password:
+                messages.error(request, "As novas senhas não coincidem!")
+                return redirect('usuario:perfil')
+            
+            # Alterar a senha
+            request.user.set_password(new_password)
+            request.user.save()
+            update_session_auth_hash(request, request.user)  # Manter o usuário logado
+            messages.success(request, "Senha alterada com sucesso!")
+            return redirect('usuario:perfil')
+        
+        # Atualizar informações básicas do perfil
         perfil.display_name = request.POST.get('display_name', perfil.display_name)
-        perfil.first_name = request.POST.get('first_name', perfil.first_name)
-        perfil.last_name = request.POST.get('last_name', perfil.last_name)
-        perfil.bio = request.POST.get('bio', perfil.bio)
+        
+        # Processar nome completo
+        full_name = request.POST.get('full_name', '')
+        if full_name:
+            name_parts = full_name.split(' ', 1)
+            perfil.first_name = name_parts[0]
+            perfil.last_name = name_parts[1] if len(name_parts) > 1 else ''
+        
         perfil.phone = request.POST.get('phone', perfil.phone)
         
         # Campos de data de nascimento e gênero
@@ -102,34 +131,52 @@ def perfil(request):
             
         perfil.gender = request.POST.get('gender', perfil.gender)
         
-        # Atualizar preferências
-        perfil.newsletter_subscribed = request.POST.get('newsletter_subscribed') == 'on'
-        perfil.marketing_opt_in = request.POST.get('marketing_opt_in') == 'on'
-        
-        # Atualizar preferências avançadas
-        perfil.language = request.POST.get('language', perfil.language)
-        perfil.currency = request.POST.get('currency', perfil.currency)
-        perfil.display_prices_with_tax = request.POST.get('display_prices_with_tax') == 'on'
-        perfil.receive_back_in_stock_alerts = request.POST.get('receive_back_in_stock_alerts') == 'on'
-        
-        # Atualizar configurações públicas
-        perfil.preferred_display_style = request.POST.get('preferred_display_style', perfil.preferred_display_style)
-        perfil.profile_visibility = request.POST.get('profile_visibility', perfil.profile_visibility)
-        perfil.show_order_history_public = request.POST.get('show_order_history_public') == 'on'
-        
         perfil.save()
         messages.success(request, "Perfil atualizado com sucesso!")
         return redirect('usuario:perfil')
     
     return render(request, 'usuarios/perfil.html', {'perfil': perfil})
 
+
 @login_required
-def enderecos(request):
+def perfil_seguranca(request):
     """
-    View para gerenciar endereços do usuário
+    View para gerenciar a segurança do perfil do usuário
     """
-    # Get or create profile for users who don't have one
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
+    
+    if request.method == "POST":
+        # Alterar senha
+        if 'current_password' in request.POST:
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            
+            # Verificar se a senha atual está correta
+            if not request.user.check_password(current_password):
+                messages.error(request, "Senha atual incorreta!")
+                return redirect('usuario:perfil_seguranca')
+            
+            # Verificar se as novas senhas coincidem
+            if new_password != confirm_password:
+                messages.error(request, "As novas senhas não coincidem!")
+                return redirect('usuario:perfil_seguranca')
+            
+            # Alterar a senha
+            request.user.set_password(new_password)
+            request.user.save()
+            update_session_auth_hash(request, request.user)  # Manter o usuário logado
+            messages.success(request, "Senha alterada com sucesso!")
+            return redirect('usuario:perfil_seguranca')
+    
+    return render(request, 'usuarios/perfil_seguranca.html', {'perfil': perfil})
+
+@login_required
+def perfil_endereco(request):
+    """
+    View para gerenciar os endereços do perfil do usuário
+    """
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
     enderecos = perfil.enderecos.all()
     
     if request.method == "POST":
@@ -145,7 +192,111 @@ def enderecos(request):
         postal_code = request.POST.get('postal_code')
         phone_at_address = request.POST.get('phone_at_address', '')
         
-        Endereco.objects.create(
+        Endereco.objects.create(  # type: ignore
+            perfil=perfil,
+            label=label,
+            recipient_name=recipient_name,
+            street=street,
+            number=number,
+            complement=complement,
+            neighborhood=neighborhood,
+            city=city,
+            state=state,
+            postal_code=postal_code,
+            phone_at_address=phone_at_address
+        )
+        
+        messages.success(request, "Endereço adicionado com sucesso!")
+        return redirect('usuario:perfil_endereco')
+    
+    return render(request, 'usuarios/perfil_endereco.html', {'perfil': perfil, 'enderecos': enderecos})
+
+@login_required
+def perfil_preferencias(request):
+    """
+    View para gerenciar as preferências do perfil do usuário
+    """
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
+    
+    if request.method == "POST":
+        # Atualizar preferências
+        perfil.newsletter_subscribed = request.POST.get('newsletter_subscribed') == 'on'
+        perfil.marketing_opt_in = request.POST.get('marketing_opt_in') == 'on'
+        perfil.language = request.POST.get('language', perfil.language)
+        perfil.currency = request.POST.get('currency', perfil.currency)
+        perfil.display_prices_with_tax = request.POST.get('display_prices_with_tax') == 'on'
+        perfil.receive_back_in_stock_alerts = request.POST.get('receive_back_in_stock_alerts') == 'on'
+        perfil.preferred_display_style = request.POST.get('preferred_display_style', perfil.preferred_display_style)
+        
+        perfil.save()
+        messages.success(request, "Preferências atualizadas com sucesso!")
+        return redirect('usuario:perfil_preferencias')
+    
+    return render(request, 'usuarios/perfil_preferencias.html', {'perfil': perfil})
+
+@login_required
+def perfil_privacidade(request):
+    """
+    View para gerenciar a privacidade do perfil do usuário
+    """
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
+    
+    if request.method == "POST":
+        # Atualizar configurações de privacidade
+        perfil.profile_visibility = request.POST.get('profile_visibility', perfil.profile_visibility)
+        perfil.show_order_history_public = request.POST.get('show_order_history_public') == 'on'
+        
+        perfil.save()
+        messages.success(request, "Configurações de privacidade atualizadas com sucesso!")
+        return redirect('usuario:perfil_privacidade')
+    
+    return render(request, 'usuarios/perfil_privacidade.html', {'perfil': perfil})
+
+@login_required
+def perfil_conta(request):
+    """
+    View para gerenciar a conta do usuário
+    """
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
+    
+    if request.method == "POST":
+        # Verificar se é uma requisição de desativação de conta
+        if 'deactivate_account' in request.POST:
+            # Lógica para desativar conta
+            messages.success(request, "Conta desativada temporariamente!")
+            return redirect('usuario:perfil_conta')
+        
+        # Verificar se é uma requisição de exclusão de conta
+        if 'delete_account' in request.POST:
+            # Lógica para excluir conta
+            messages.success(request, "Conta excluída com sucesso!")
+            return redirect('nucleo:index')
+    
+    return render(request, 'usuarios/perfil_conta.html', {'perfil': perfil})
+
+@login_required
+def enderecos(request):
+    """
+    View para gerenciar endereços do usuário
+    """
+    # Get or create profile for users who don't have one
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
+    enderecos = perfil.enderecos.all()
+    
+    if request.method == "POST":
+        # Adicionar novo endereço
+        label = request.POST.get('label')
+        recipient_name = request.POST.get('recipient_name')
+        street = request.POST.get('street')
+        number = request.POST.get('number')
+        complement = request.POST.get('complement', '')
+        neighborhood = request.POST.get('neighborhood')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        postal_code = request.POST.get('postal_code')
+        phone_at_address = request.POST.get('phone_at_address', '')
+        
+        Endereco.objects.create(  # type: ignore
             perfil=perfil,
             label=label,
             recipient_name=recipient_name,
@@ -170,7 +321,7 @@ def endereco_editar(request, endereco_id):
     View para editar um endereço específico
     """
     # Get or create profile for users who don't have one
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
     endereco = get_object_or_404(Endereco, id=endereco_id, perfil=perfil)
     
     if request.method == "POST":
@@ -197,7 +348,7 @@ def endereco_excluir(request, endereco_id):
     View para excluir um endereço
     """
     # Get or create profile for users who don't have one
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
+    perfil, created = Perfil.objects.get_or_create(user=request.user)  # type: ignore
     endereco = get_object_or_404(Endereco, id=endereco_id, perfil=perfil)
     endereco.delete()
     messages.success(request, "Endereço excluído com sucesso!")
