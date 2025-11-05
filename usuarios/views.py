@@ -89,9 +89,33 @@ def perfil(request):
         perfil.bio = request.POST.get('bio', perfil.bio)
         perfil.phone = request.POST.get('phone', perfil.phone)
         
+        # Campos de data de nascimento e gênero
+        birth_date_str = request.POST.get('birth_date', '')
+        if birth_date_str:
+            try:
+                from datetime import datetime
+                perfil.birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date()
+            except ValueError:
+                pass  # Mantém o valor atual se a data for inválida
+        else:
+            perfil.birth_date = None
+            
+        perfil.gender = request.POST.get('gender', perfil.gender)
+        
         # Atualizar preferências
         perfil.newsletter_subscribed = request.POST.get('newsletter_subscribed') == 'on'
         perfil.marketing_opt_in = request.POST.get('marketing_opt_in') == 'on'
+        
+        # Atualizar preferências avançadas
+        perfil.language = request.POST.get('language', perfil.language)
+        perfil.currency = request.POST.get('currency', perfil.currency)
+        perfil.display_prices_with_tax = request.POST.get('display_prices_with_tax') == 'on'
+        perfil.receive_back_in_stock_alerts = request.POST.get('receive_back_in_stock_alerts') == 'on'
+        
+        # Atualizar configurações públicas
+        perfil.preferred_display_style = request.POST.get('preferred_display_style', perfil.preferred_display_style)
+        perfil.profile_visibility = request.POST.get('profile_visibility', perfil.profile_visibility)
+        perfil.show_order_history_public = request.POST.get('show_order_history_public') == 'on'
         
         perfil.save()
         messages.success(request, "Perfil atualizado com sucesso!")

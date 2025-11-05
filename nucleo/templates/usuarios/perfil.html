@@ -47,6 +47,27 @@
                             </div>
                         </div>
                         
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="birth_date" class="form-label">Data de Nascimento</label>
+                                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ perfil.birth_date|date:'Y-m-d' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gênero</label>
+                                    <select class="form-control" id="gender" name="gender">
+                                        <option value="">Selecione</option>
+                                        <option value="male" {% if perfil.gender == 'male' %}selected{% endif %}>Masculino</option>
+                                        <option value="female" {% if perfil.gender == 'female' %}selected{% endif %}>Feminino</option>
+                                        <option value="other" {% if perfil.gender == 'other' %}selected{% endif %}>Outro</option>
+                                        <option value="prefer_not" {% if perfil.gender == 'prefer_not' %}selected{% endif %}>Prefiro não informar</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="phone" class="form-label">Telefone</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{ perfil.phone }}">
@@ -75,6 +96,54 @@
                     </form>
                 </div>
             </div>
+            
+            <!-- Seção de Preferências -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Preferências</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="language" class="form-label">Idioma</label>
+                                    <select class="form-control" id="language" name="language">
+                                        <option value="pt-BR" {% if perfil.language == 'pt-BR' %}selected{% endif %}>Português (Brasil)</option>
+                                        <option value="en-US" {% if perfil.language == 'en-US' %}selected{% endif %}>English (United States)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="currency" class="form-label">Moeda</label>
+                                    <select class="form-control" id="currency" name="currency">
+                                        <option value="BRL" {% if perfil.currency == 'BRL' %}selected{% endif %}>Real Brasileiro</option>
+                                        <option value="USD" {% if perfil.currency == 'USD' %}selected{% endif %}>Dólar Americano</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="display_prices_with_tax" name="display_prices_with_tax" {% if perfil.display_prices_with_tax %}checked{% endif %}>
+                            <label class="form-check-label" for="display_prices_with_tax">
+                                Exibir preços com impostos
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="receive_back_in_stock_alerts" name="receive_back_in_stock_alerts" {% if perfil.receive_back_in_stock_alerts %}checked{% endif %}>
+                            <label class="form-check-label" for="receive_back_in_stock_alerts">
+                                Receber alertas de reposição
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar Preferências</button>
+                    </form>
+                </div>
+            </div>
         </div>
         
         <div class="col-md-4">
@@ -100,6 +169,44 @@
                             <a href="#">Preferências de Notificação</a>
                         </li>
                     </ul>
+                </div>
+            </div>
+            
+            <!-- Seção de Perfil Público -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Perfil Público</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="preferred_display_style" class="form-label">Estilo de Exibição</label>
+                            <select class="form-control" id="preferred_display_style" name="preferred_display_style">
+                                <option value="real_name" {% if perfil.preferred_display_style == 'real_name' %}selected{% endif %}>Nome real</option>
+                                <option value="username" {% if perfil.preferred_display_style == 'username' %}selected{% endif %}>Nome de usuário</option>
+                                <option value="display_name" {% if perfil.preferred_display_style == 'display_name' %}selected{% endif %}>Nome de exibição</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="profile_visibility" class="form-label">Visibilidade do Perfil</label>
+                            <select class="form-control" id="profile_visibility" name="profile_visibility">
+                                <option value="private" {% if perfil.profile_visibility == 'private' %}selected{% endif %}>Privado</option>
+                                <option value="friends_only" {% if perfil.profile_visibility == 'friends_only' %}selected{% endif %}>Apenas amigos</option>
+                                <option value="public" {% if perfil.profile_visibility == 'public' %}selected{% endif %}>Público</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="show_order_history_public" name="show_order_history_public" {% if perfil.show_order_history_public %}checked{% endif %}>
+                            <label class="form-check-label" for="show_order_history_public">
+                                Mostrar histórico de pedidos publicamente
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar Configurações Públicas</button>
+                    </form>
                 </div>
             </div>
         </div>

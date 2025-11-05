@@ -33,7 +33,7 @@ Este projeto utiliza o versionamento semântico (Semantic Versioning - SemVer) p
 
 Para informações detalhadas sobre todas as mudanças em cada versão deste projeto, consulte o arquivo [CHANGELOG.md](CHANGELOG.md).
 
-A versão atual do projeto é **v1.1.0**.
+A versão atual do projeto é **v1.2.0**.
 
 ## 🚀 Instalação
 
@@ -114,6 +114,8 @@ O projeto utiliza um design responsivo com:
 - Layout intuitivo e fácil de navegar
 - Ícones e imagens atrativas
 - Experiência otimizada para desktop e mobile
+- Tema moderno AvoidNess com cores roxas (#8a2be2, #4a0080), glassmorphism, gradientes e animações suaves
+- Tipografia Space Grotesk
 
 ## 📝 Próximos Passos
 

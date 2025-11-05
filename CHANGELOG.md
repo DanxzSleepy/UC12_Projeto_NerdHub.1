@@ -11,6 +11,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Limpeza de arquivos de cache
 - Funcionalidades de gerenciamento de perfil e endereço do usuário
 - Melhorias no CSS do perfil
+- Novos campos no formulário de perfil (data de nascimento, gênero, preferências avançadas)
+- Seções adicionais no perfil (Preferências, Perfil Público)
 
 ### Alterado
 - Atualização do .gitignore
@@ -18,6 +20,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Redesenho do layout do carrinho com Flexbox e estilos melhorados
 - Melhoria no estilo do site e exibição de produtos no carrinho
 - Namespace do formulário de avaliação no detalhe do produto
+- Atualização completa do design do perfil com tema AvoidNess (cores roxas, glassmorphism, gradientes)
+- Aprimoramento da view de perfil para lidar com novos campos
 
 ### Corrigido
 - Problemas com links CSS e HTML
