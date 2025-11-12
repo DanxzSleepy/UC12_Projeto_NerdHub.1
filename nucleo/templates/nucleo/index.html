@@ -77,11 +77,14 @@
         <div class="funko-grid">
             {% for produto in produtos %}
             <div class="funko-item">
-                <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="funko-img">
-                <h3>{{ produto.nome }}</h3>
+                <a href="{% url 'nucleo:detalhe_produto' produto.id %}">
+                    <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="funko-img"></a>
+                <a href="{% url 'nucleo:detalhe_produto' produto.id %}">
+                    <h3>{{ produto.nome }}</h3>
+                </a>
                 <p class="price">R$ {{ produto.preco }}</p>
                 <p>Em até 12x sem juros</p>
-                <a href="{% url 'nucleo:detalhe_produto' produto.id %}" class="btn">Ver Produto</a>
+               
             </div>
             {% endfor %}
         </div>
