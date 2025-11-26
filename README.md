@@ -129,6 +129,23 @@ Funcionalidades planejadas para implementações futuras:
 - Avaliações por estrelas
 - Notificações por email
 
+## 🧪 Testes Automatizados
+
+Este projeto inclui uma suíte completa de testes automatizados para garantir a qualidade e estabilidade da aplicação.
+
+### Executando os Testes
+
+```bash
+# Executar todos os testes
+python run_tests.py
+
+# Executar com cobertura de código
+coverage run --source='.' run_tests.py
+coverage report
+```
+
+Para mais detalhes, consulte a documentação em [TESTING_DOCUMENTATION.md](TESTING_DOCUMENTATION.md).
+
 ## 🤝 Contribuição
 
 1. Faça um fork do projeto
